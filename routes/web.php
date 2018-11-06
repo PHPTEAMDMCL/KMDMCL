@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome',['one'=>1,'two'=>'hello world']);
 });
@@ -18,6 +19,12 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	Route::group(["prefix"=>"10"],function(){
 		Route::get('/test', "ProductController@test");
 		Route::any("/posttest","ProductController@posttest");
+
+		
+	});
+	Route::group(["prefix"=>"11"],function(){
+		//landing page 11/11
+		Route::get('/single', "ProductController@single");
 	});
 
 });
@@ -28,11 +35,16 @@ Route::group(["namespace"=>"C2019"],function(){
 	//});
 
 });
-// FOR BACKEND 
-Route::group(["prefix"=>"admin","namespace"=>"Admin"],function(){
-	Route::group(["prefix"=>"index"],function(){
-		Route::get('/test', "IndexController@index");
+// FOR BACKEND
+
+
+Route::group(["prefix"=>"admin","namespace"=>"Amin"],function(){
+	// Route::group(["prefix"=>"index"],function(){
+		Route::get("/login", "AdminController@index");
+		Route::post("/postlogin","AdminController@postlogin");
+
 		
-	});
+
+	// });
 
 });

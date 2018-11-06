@@ -7,13 +7,16 @@ use App\Http\Controllers\Controller;
 
 use Validator;
 use App\Model\Product as DTProduct;
+use App\Model\LiveChild;
 class ProductController extends AppController
 {
     //
  
     public function test(){
         
+        
     	return view("v2018.m10.test",$this->View);
+        
     }
     public function posttest(Request $request){
     		
@@ -30,4 +33,16 @@ class ProductController extends AppController
     		return redirect()->back();
     	}
     }
+
+
+    public function single(){
+        // $getpro = LiveChild::where('cid_live','=','landingsingle2018')->get();
+        $get = LiveChild::getJson('landingsingle2018');
+        $number = 1;
+        
+          return view("v2018.m11.single",$this->View,['get'=>$get,'number'=>$number]);
+    }
+
+
+
 }
