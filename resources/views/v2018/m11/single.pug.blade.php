@@ -1,3 +1,4 @@
+doctype html
 html(lang="vi-VN")
 	head
 		title 11 tháng 11 - Độc thân sung sướng - Mua online giảm đến 20% | Điện Máy Chợ Lớn
@@ -46,44 +47,55 @@ html(lang="vi-VN")
 						img(src="/y2018/m11/single/img/doc-than-11-11.png" alt="ngày độc thân giá sốc" class="animated fadeInRight")
 					nav
 						ul(class="menunav")
-							
+							$number =1;
 							
 							@foreach($get as $key=> $value)
-							
-							li(class="menunav_li current_tab_dt" idx="{{$number}}")
-								a(href="javascript:;" title="") {{$key}}
-
-							
+							$current_tab_dt = '';
+							@if($number ==1)
+							$current_tab_dt = 'current_tab_dt';
+							@endif
+							li(class='menunav_li')(idx=$number++)(class=$current_tab_dt)
+								a(href="javascript:;" title=$key) {{$key}}
 							@endforeach
 							
 							
 		section
 			.container_screen
+				$number =1;
 				
 				@foreach($get as $key => $values)
-
-				.my_box_content1.box_content
+					$_hiddenbox = 'display:none';
+					$fadeInLeft = '';
+				@if($number ==1)
+					$fadeInLeft = 'wow fadeInLeft';
+					$_hiddenbox = '';
+				@endif
+				div(class='box_content my_box_content'+$number++ )(style=$_hiddenbox)
 					ul.list_product
-						@foreach($values as $item)
+						@foreach($values as $k => $v)
+						
 						li
-							a.img_pro(href='#' title='#')
-								img(src='https://static.dienmaycholon.vn/tmp/product_12762_220_220.jpg' alt='#')
+							a.img_pro(href='https://dienmaycholon.vn/'+$v['namecate']+'/'+$v['name'] title=$v['name'])
+								img(src='https://static.dienmaycholon.vn/tmp/product_'+$v['myid']+'_220_220.jpg' alt='#')
 								i.iconx
 							h3.info_name
-								
+								| {{$v['name']}}
 							.info_price
-								strong 12.990.000 Đ
+								strong {{number_format($v['saleprice'])}} Đ
 							.box_pro_info
 								.show_gift_promo
 									p
 										| Giá độc thân &nbsp;
-										span 1x.xxx.000 Đ
+										span {{$v['discountonline']}}
 								.box_muangay
-									a.add_muangay(href='#' title='Mua ngay') MUA NGAY
+									a.add_muangay(href='https://dienmaycholon.vn/'+$v['namecate']+'/'+$v['name'] title='Mua ngay') MUA NGAY
 						@endforeach
+					
+
+
 					.boxseemore
-						 a.btn_seemore(title='Xem thêm sản phẩm' href='https://dienmaycholon.vn/tivi-led' target='_blank')
-						    | Xem thêm sản phẩm tivi khác
+						 a.btn_seemore(title='Xem thêm sản phẩm' href='https://dienmaycholon.vn/'+$key target='_blank')
+						    | Xem thêm sản phẩm {{$key}} khác
 				@endforeach
 			
 		footer

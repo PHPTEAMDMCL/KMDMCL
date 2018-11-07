@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Validator;
-use App\Model\Product as DTProduct;
+use App\Model\Product;
 use App\Model\LiveChild;
+use App\MrData;
 class ProductController extends AppController
 {
     //
@@ -38,9 +39,7 @@ class ProductController extends AppController
     public function single(){
         // $getpro = LiveChild::where('cid_live','=','landingsingle2018')->get();
         $get = LiveChild::getJson('landingsingle2018');
-        $number = 1;
-        
-          return view("v2018.m11.single",$this->View,['get'=>$get,'number'=>$number]);
+          return view("v2018.m11.single",['get'=>$get]);
     }
 
 

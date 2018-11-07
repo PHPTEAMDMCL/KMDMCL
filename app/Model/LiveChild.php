@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Product;
+use App\MrData;
 class LiveChild extends Model
 {
     //
@@ -31,7 +32,7 @@ class LiveChild extends Model
 				if(!empty($product))
 				{
 					$data_product[$key][$number] = $product;
-					// $data_product[$key][$number]['discountonline'] = $discountonline;
+					$data_product[$key][$number]['discountonline'] = $discountonline;
 					$number++;
 
 				}

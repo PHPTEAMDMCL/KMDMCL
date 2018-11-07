@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome',['one'=>1,'two'=>'hello world']);
+    return redirect('https://dienmaycholon.vn/');
 });
 Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	Route::group(["prefix"=>"10"],function(){
@@ -24,7 +24,15 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	});
 	Route::group(["prefix"=>"11"],function(){
 		//landing page 11/11
-		Route::get('/single', "ProductController@single");
+		Route::get('/sale-11-11', "ProductController@single");
+
+		//order note9
+		Route::get('/note9', function(){
+			return view("v2018.m11.note9");
+		});
+		Route::get('/listnote9',function(){
+			return view("v2018.m11.listnote9");
+		});
 	});
 
 });
