@@ -35886,11 +35886,7 @@ jQuery(document).ready(function ($) {
     $(".box_content").hide();
     $(".my_box_content" + $(this).attr("idx")).show();
   });
-  $(".header_col2").click(function () {
-    var div_store1 = $(".menunav").position();
-    $("body , html").animate({ scrollTop: div_store1.top }, 700);
-    return false;
-  });
+  $(window).scroll(function(){if($(this).scrollTop()>500){$('#bttop').fadeIn();}else{$('#bttop').fadeOut();}});$('#bttop').click(function(){$('body,html').animate({scrollTop:650},1000);});
 });
 
 /***/ }),

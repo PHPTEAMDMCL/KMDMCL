@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'khuyenmaidienamcyholocn'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,8 +38,8 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
-
-    'debug' => env('APP_DEBUG', true),
+    
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://khuyenmai.dienmaycholon.vn'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +104,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' =>  env('APP_KEY',"base64:PWUBImqH0HIfd6MWbqqsHtkHFlmHHxlr3Vn2YMj6f2M="),
 
     'cipher' => 'AES-256-CBC',
 

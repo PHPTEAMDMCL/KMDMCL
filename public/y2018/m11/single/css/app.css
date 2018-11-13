@@ -10466,23 +10466,33 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+#bttop {
+    padding: 5px;
+    position: fixed;
+    bottom: 35px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
 
+.none {display:none;}
+.block {display:block;}
 @font-face {
   font-family: samsungbold;
-  src: url(/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.eot?c84fd02ca8c0061063422a381c338491);
-  src: url(/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.eot?c84fd02ca8c0061063422a381c338491) format("embedded-opentype"), url(/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.woff2?d16cb331b3636554cc501cc7210cd57a) format("woff2"), url(/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.woff?68ba389405add0e09aa825542ae1b746) format("woff"), url(/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.ttf?1b6d33306d2511560f9848d3b32cccc4) format("truetype"), url(/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.svg?efb136e9c4b535a6d94f7a53a3b4f742) format("svg");
+  src: url(/fonts/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.eot?c84fd02ca8c0061063422a381c338491);
+  src: url(/fonts/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.eot?c84fd02ca8c0061063422a381c338491) format("embedded-opentype"), url(/fonts/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.woff2?d16cb331b3636554cc501cc7210cd57a) format("woff2"), url(/fonts/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.woff?68ba389405add0e09aa825542ae1b746) format("woff"), url(/fonts/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.ttf?1b6d33306d2511560f9848d3b32cccc4) format("truetype"), url(/fonts/y2018/m11/single/fonts/iCielSamsungSharpSans-Bold.svg?efb136e9c4b535a6d94f7a53a3b4f742) format("svg");
 }
 
 @font-face {
   font-family: Roboto_Regular;
-  src: url(/y2018/m11/single/fonts/Roboto-Regular.eot?5fa55938023f097c3b31a497528caeed);
-  src: url(/y2018/m11/single/fonts/Roboto-Regular.eot?5fa55938023f097c3b31a497528caeed) format("embedded-opentype"), url(/y2018/m11/single/fonts/Roboto-Regular.woff2?bda2342539e016181950188f47c31e04) format("woff2"), url(/y2018/m11/single/fonts/Roboto-Regular.woff?74b743fa415fb32dfa2b0f2d9369be27) format("woff"), url(/y2018/m11/single/fonts/Roboto-Regular.ttf?3e1af3ef546b9e6ecef9f3ba197bf7d2) format("truetype"), url(/y2018/m11/single/fonts/Roboto-Regular.svg?420e585bac396d967d5507dc37ef1d12) format("svg");
+  src: url(/fonts/y2018/m11/single/fonts/Roboto-Regular.eot?5fa55938023f097c3b31a497528caeed);
+  src: url(/fonts/y2018/m11/single/fonts/Roboto-Regular.eot?5fa55938023f097c3b31a497528caeed) format("embedded-opentype"), url(/fonts/y2018/m11/single/fonts/Roboto-Regular.woff2?bda2342539e016181950188f47c31e04) format("woff2"), url(/fonts/y2018/m11/single/fonts/Roboto-Regular.woff?74b743fa415fb32dfa2b0f2d9369be27) format("woff"), url(/fonts/y2018/m11/single/fonts/Roboto-Regular.ttf?3e1af3ef546b9e6ecef9f3ba197bf7d2) format("truetype"), url(/fonts/y2018/m11/single/fonts/Roboto-Regular.svg?420e585bac396d967d5507dc37ef1d12) format("svg");
 }
 
 @font-face {
   font-family: Roboto_Bold;
-  src: url(/y2018/m11/single/fonts/Roboto-Bold.eot?7173d5fb3b410f1141723e776ea786d5);
-  src: url(/y2018/m11/single/fonts/Roboto-Bold.eot?7173d5fb3b410f1141723e776ea786d5) format("embedded-opentype"), url(/y2018/m11/single/fonts/Roboto-Bold.woff2?43a7eb2fcd803e157f7097f9aaf818b7) format("woff2"), url(/y2018/m11/single/fonts/Roboto-Bold.woff?010bc8922455c3cccc84399c6b50571f) format("woff"), url(/y2018/m11/single/fonts/Roboto-Bold.ttf?ee7b96fa85d8fdb8c126409326ac2d2b) format("truetype"), url(/y2018/m11/single/fonts/Roboto-Bold.svg?fdc4b330cbf226a54ed79a2ae0d820ff) format("svg");
+  src: url(/fonts/y2018/m11/single/fonts/Roboto-Bold.eot?7173d5fb3b410f1141723e776ea786d5);
+  src: url(/fonts/y2018/m11/single/fonts/Roboto-Bold.eot?7173d5fb3b410f1141723e776ea786d5) format("embedded-opentype"), url(/fonts/y2018/m11/single/fonts/Roboto-Bold.woff2?43a7eb2fcd803e157f7097f9aaf818b7) format("woff2"), url(/fonts/y2018/m11/single/fonts/Roboto-Bold.woff?010bc8922455c3cccc84399c6b50571f) format("woff"), url(/fonts/y2018/m11/single/fonts/Roboto-Bold.ttf?ee7b96fa85d8fdb8c126409326ac2d2b) format("truetype"), url(/fonts/y2018/m11/single/fonts/Roboto-Bold.svg?fdc4b330cbf226a54ed79a2ae0d820ff) format("svg");
 }
 
 a:hover {
@@ -10515,7 +10525,7 @@ section {
   height: 100%;
   text-align: center;
   position: relative;
-  background-image: url(/y2018/m11/single/img/bg-header.jpg?9be53d95f4bc91269ba691883bba6ecf);
+  background-image: url(/img/y2018/m11/single/img/bg-header.jpg?9be53d95f4bc91269ba691883bba6ecf);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10597,7 +10607,7 @@ nav {
   box-shadow: 0px 3px 0px 2px #7383ef;
   cursor: pointer;
   list-style: none;
-  background-image: url(/y2018/m11/single/img/btn-menu.png?f16ff2babc3485e3380b47177f2e0843);
+  background-image: url(/img/y2018/m11/single/img/btn-menu.png?f16ff2babc3485e3380b47177f2e0843);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10608,7 +10618,7 @@ nav {
 .menunav li.current_tab_dt {
   cursor: pointer;
   color: #fff;
-  background-image: url(/y2018/m11/single/img/btn-menu-h.png?c9b3edd12dfbeb1a1b385b0b4d32fd4e);
+  background-image: url(/img/y2018/m11/single/img/btn-menu-h.png?c9b3edd12dfbeb1a1b385b0b4d32fd4e);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10625,7 +10635,7 @@ nav {
   content: "";
   width: 51px;
   height: 51px;
-  background-image: url(/y2018/m11/single/img/arrow-drop.png?18d4b866f96f1a92c4af48b08ada6cbd);
+  background-image: url(/img/y2018/m11/single/img/arrow-drop.png?18d4b866f96f1a92c4af48b08ada6cbd);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10669,7 +10679,7 @@ nav {
 }
 
 section {
-  background-image: url(/y2018/m11/single/img/bg-content.jpg?590355c38bcab63e432b8623ab7dc44c);
+  background-image: url(/img/y2018/m11/single/img/bg-content.jpg?590355c38bcab63e432b8623ab7dc44c);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10684,8 +10694,11 @@ section {
   background-color: #fff;
   padding-top: 10px;
   margin-top: 5px;
+  display: none;
 }
-
+.container_screen .box_content:first-child {
+  display: block;
+}
 .list_product {
   width: 100%;
   display: block;
@@ -10731,7 +10744,7 @@ section {
 }
 
 .iconx {
-  background-image: url(/y2018/m11/single/img/xx-sieu-nho.png?6605de70c0339a9d68524e35280c52a2);
+  background-image: url(/img/y2018/m11/single/img/xx-sieu-nho.png?6605de70c0339a9d68524e35280c52a2);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10747,7 +10760,40 @@ section {
   -ms-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
 }
-
+.icon11 {
+  background-image: url(/img/y2018/m11/single/img/icon-gia-soc.png);
+  background-position: center top;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 108px;
+  height: 55px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.notepercent span
+{
+  font-family: 'samsungbold', Arial;
+  font-size: 16px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.notepercent strong
+{
+  font-family: 'samsungbold', Arial;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: normal;
+  background-color: #c41927;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 3px 10px 2px 10px;
+  border-radius: 10px;
+}
 .img_pro a,
 .info_price {
   display: block;
@@ -10795,12 +10841,9 @@ section {
 }
 
 .info_price span {
-  color: #e50000;
-  font-size: 18px;
   font-family: 'Roboto_Regular', Arial, Tahoma;
   font-weight: normal;
   margin-right: 5px;
-  text-decoration: line-through;
 }
 
 .info_price strong {
@@ -10837,7 +10880,7 @@ section {
 }
 
 .show_gift_promo:before {
-  background-image: url(/y2018/m11/single/img/icon-gift.png?37dcc36d69116a280766f9962988d693);
+  background-image: url(/img/y2018/m11/single/img/icon-gift.png?37dcc36d69116a280766f9962988d693);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10865,7 +10908,8 @@ section {
 
 .add_muangay {
   display: inline-block;
-  padding: 7px 38px;
+  padding: 7px 25px;
+  margin-right: 4%;
   color: #fff;
   text-align: center;
   font-size: 15px;
@@ -10877,13 +10921,23 @@ section {
   -webkit-box-shadow: 0px 2px 1px 0px #4e2257;
   -ms-box-shadow: 0px 2px 1px 0px #4e2257;
   box-shadow: 0px 2px 0px 1px #4e2257;
-  background-image: url(/y2018/m11/single/img/btn-mua.png?70a0539d05ea78dbeb2f0f78f96ff38f);
+  background-image: url(/img/y2018/m11/single/img/btn-mua.png?70a0539d05ea78dbeb2f0f78f96ff38f);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.add_muangay1 {
+  display: inline-block;
+  background-image: url(/img/y2018/m11/single/img/xem-chi-tiet.png);
+  background-position: center top;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 120px;
+  height: 40px;
+  vertical-align: middle;
+}
 .boxseemore {
   width: 100%;
   margin: 0 auto;
@@ -10907,7 +10961,7 @@ section {
   -webkit-box-shadow: 0px 5px 0px 0px #7383ef;
   -ms-box-shadow: 0px 5px 0px 0px #7383ef;
   box-shadow: 0px 5px 0px 0px #7383ef;
-  background-image: url(/y2018/m11/single/img/btn-more.png?c00ebe77728d2cc44685166c585c3431);
+  background-image: url(/img/y2018/m11/single/img/btn-more.png?c00ebe77728d2cc44685166c585c3431);
   background-position: center top;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -10921,7 +10975,7 @@ section {
 
 footer {
   clear: both;
-  background: #fff url(/y2018/m11/single/img/footer_03.jpg?043515579ff9eab1f1a40acd6399b348) no-repeat center center;
+  background: #fff url(/img/y2018/m11/single/img/footer_03.jpg?043515579ff9eab1f1a40acd6399b348) no-repeat center center;
   font-family: samsungbold, Arial, Tahoma;
   font-size: 14px;
   color: #000;
@@ -11087,6 +11141,8 @@ footer {
     float: left;
     width: 51%;
   }
+  .none { display:block;}
+.block { display:none;}
 
   .menunav {
     padding: 0;
