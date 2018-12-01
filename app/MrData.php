@@ -209,7 +209,22 @@ class MrData
 	{
 		return mb_strtoupper($string, $encode);
 	}
-	
+	public static function Percent($price,$sale){
+		$sale=(int)$sale;
+		$price=(int)$price;
+		if((int)($sale) > (int)($price)){
+			$ab= round(100-($price*100)/$sale);
+			if($ab>5){
+				return $ab;
+				
+			}
+			return 0;
+
+		}elseif($sale==$price){
+			return 0;
+		}
+		return 0;
+	}
 	public static function toAlias($string)
 	{
 		$tmp = array("~","`","!","@","#","$","%","^","&","*","(",")","-","_","=","+","{","[","]","}","|","\\",":",";","'","\"","<",",",">",".","?","/");

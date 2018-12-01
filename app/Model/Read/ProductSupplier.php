@@ -11,4 +11,5 @@ class ProductSupplier extends Model
     protected $table="pro_supplier_product";
     protected $primary='id';
     protected $timestamp=true;
+    
 }

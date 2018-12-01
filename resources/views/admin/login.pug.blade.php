@@ -11,7 +11,8 @@ html(lang='en')
 	    link(href='/admin/css/bootstrap-responsive.min.css', rel='stylesheet')
 	    link#base-style(href='/admin/css/style.css', rel='stylesheet')
 	    link#base-style-responsive(href='css/style-responsive.css', rel='stylesheet')
-	    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext', rel='stylesheet', type='text/css')
+	    
+	    meta(name="csrf-token" content=csrf_token())
 	    style(type='text/css').
     		body { background: url(/admin/img/bg-login.jpg) !important; }
   	body
@@ -30,18 +31,19 @@ html(lang='en')
 	          .login-box
 	            
 	            h2 Login to your account
-	            form.form-horizontal(action='/postlogin', method='post')
-	              fieldset
+	            
+	            {!!Form::open(['method'=>'post','url'=>'/postlogin'])!!}	
+	            fieldset
 	                .input-prepend(title='Username')
 	                  span.add-on
 	                    i.halflings-icon.user
-	                  input#username.input-large.span10(name='username', type='text', autocomplete="off", placeholder='Username')
+	                  
+	                  	{!!Form::text("username",null,[])}
 	                .clearfix
 	                .input-prepend(title='Password')
 	                  span.add-on
 	                    i.halflings-icon.lock
-	                  input#password.input-large.span10(name='password', type='password',autocomplete="off",placeholder='Password')
-	                  input(type='hidden' value!=csrf_token() name='_token')
+	                  {!!Form::text("password",null,[])}
 	                .clearfix
 	                .button-login
 	                  button.btn.btn-primary(type='submit') Login

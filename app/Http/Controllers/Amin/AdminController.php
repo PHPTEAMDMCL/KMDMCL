@@ -18,43 +18,43 @@ namespace App\Http\Controllers\Amin;
 class AdminController extends Controller
 {
     //
-    public function index(){
+    // public function index(){
        
-        return view("admin.login",['title'=>'Login Admin']);
+    //     return view("admin.login",['title'=>'Login Admin']);
             
     	
-    }
+    // }
 
-    public function postlogin(Request $request){
-       $validater=Validator::make($request->all(),[
-            "username"=>"required",
-            "password"=>"required"
-        ],[
-            "username.required"=>"Vui lòng nhập username.",
-            "password.required"=>"Vui lòng nhập password"
-        ]);
+    // public function postlogin(Request $request){
+    //    $validater=Validator::make($request->all(),[
+    //         "username"=>"required",
+    //         "password"=>"required"
+    //     ],[
+    //         "username.required"=>"Vui lòng nhập username.",
+    //         "password.required"=>"Vui lòng nhập password"
+    //     ]);
 
-        if($validater->fails()){
-            return redirect()->back()->withErrors($validater)->withInput();
-        }else{
-                $username = $request->input('username');
-                $password = $request->input('password');
-                $user=User::getUser($username,$password);
+    //     if($validater->fails()){
+    //         return redirect()->back()->withErrors($validater)->withInput();
+    //     }else{
+    //             $username = $request->input('username');
+    //             $password = $request->input('password');
+    //             $user=User::getUser($username,$password);
               
-                if($user != 'null'){
+    //             if($user != 'null'){
 
-                    return Redirect::to('/admin/dashboard'); 
+    //                 return Redirect::to('/admin/dashboard'); 
                     
-                }else{
+    //             }else{
 
-                        $request->session()->flash("success","username or password wrong");
-                        return redirect()->back();
-                    }    
+    //                     $request->session()->flash("success","username or password wrong");
+    //                     return redirect()->back();
+    //                 }    
                    
                 
                 
-        } 
-    }
+    //     } 
+    // }
 
 
     // public function postlogin(Request $request){

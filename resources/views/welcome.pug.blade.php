@@ -4,7 +4,7 @@ html(lang='en')
 		title Pug
 		style(href="/css/app.css")
 	body
-		h1 Pug Examples
+		h1 Pug Examples 1234
 		div.container.row
 	   		div.cols-sm-3
 	   			a(href='/2018/10/test') CLICK FOR TEST

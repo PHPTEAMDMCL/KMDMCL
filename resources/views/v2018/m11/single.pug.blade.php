@@ -16,9 +16,9 @@ html(lang="vi-VN")
 		meta(property='og:image' content='https://dienmaycholon.vn/dmcl/images/11-11-800-416.jpg')
 		meta(property='article:publisher' content='https://www.facebook.com/dienmaycholononline')
 		link(type='image/x-icon' rel='Shortcut Icon' href='https://dienmaycholon.vn/public/default/img/favicon.ico')
-		link(href="/y2018/m11/single/css/app.css" type='text/css' rel='stylesheet')
+		link(href="/css/y2018/m11/single/css/app.css" type='text/css' rel='stylesheet')
 	
-		script(type='text/javascript' src='/y2018/m11/single/js/app.js')
+		script(type='text/javascript' src='/js/y2018/m11/single/js/app.js')
 		script.
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,13 +34,13 @@ html(lang="vi-VN")
                 .header_col
 					p(class="header_col_banner")
 						a(href="https://dienmaycholon.vn/" class="logodmcl" target="_blank" title="Siêu thị điện máy Chợ Lớn")
-							img(src="/y2018/m11/single/img/logo-dmcl.png" alt="logo Siêu thị điện máy Chợ Lớn" class="animated fadeInLeft")
+							img(src="/img/y2018/m11/single/img/logo-dmcl.png" alt="logo Siêu thị điện máy Chợ Lớn" class="animated fadeInLeft")
 						
-						img(src="/y2018/m11/single/img/img-left.png" alt="siêu giảm giá" class="animated fadeInLeft")
+						img(src="/img/y2018/m11/single/img/img-left.png" alt="siêu giảm giá" class="animated fadeInLeft")
 					
 					a(class="header_col2" href="https://dienmaycholon.vn/tin-khuyen-mai/1111-doc-than-sung-suong-mua-online-giam-den-50" title="chi tiết chi trình" target="_blank")
 
-						img(src="/y2018/m11/single/img/doc-than-11-11.png" alt="ngày độc thân giá sốc" class="animated fadeInRight")
+						img(src="/img/y2018/m11/single/img/doc-than-11-11.png" alt="ngày độc thân giá sốc" class="animated fadeInRight")
 					nav
 						ul(class="menunav")
 							$number =1;

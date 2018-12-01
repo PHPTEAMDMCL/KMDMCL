@@ -60,8 +60,11 @@ class LoginController extends Controller
         }else{
                 $username = $request->input('username');
                 $password = $request->input('password');
+
+                     
                 if(Auth::attempt(['username'=>$username,'password'=>$password])){
-                    return redirect("/admin/dashboard");
+
+                    return redirect("/admin/index/index");
                 }else{
 
                         $request->session()->flash("success","username or password wrong");

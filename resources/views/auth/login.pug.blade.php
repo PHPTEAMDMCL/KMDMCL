@@ -7,13 +7,13 @@ html(lang='en')
         meta(name='author', content='Dennis Ji')
         meta(name='keyword', content='Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        link#bootstrap-style(href='/admin/css/bootstrap.min.css', rel='stylesheet')
-        link(href='/admin/css/bootstrap-responsive.min.css', rel='stylesheet')
-        link#base-style(href='/admin/css/style.css', rel='stylesheet')
-        link#base-style-responsive(href='/admin/css/style-responsive.css', rel='stylesheet')
-        link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext', rel='stylesheet', type='text/css')
+        link#bootstrap-style(href=asset('/admin/css/bootstrap.min.css'), rel='stylesheet')
+        link(href=asset('/admin/css/bootstrap-responsive.min.css' ) , rel='stylesheet')
+        link#base-style(href=asset('/admin/css/style.css' ) , rel='stylesheet')
+        link#base-style-responsive(href=asset('/admin/css/style-responsive.css' ) , rel='stylesheet')
+        
         style(type='text/css').
-            body { background: url(/admin/img/bg-login.jpg) !important; }
+            body { background: url(/img/admin/img/bg-login.jpg) !important; }
     body
         .container-fluid-full
           .row-fluid

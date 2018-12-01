@@ -47,12 +47,13 @@ return [
             'database'  => env('DB_DATABASE','webdmclldp2018'),
             'username'  => env('DB_USERNAME','dmclld2018'),
             'password'  => env('DB_PASSWORD','LDPudb2019***'),
-            'unix_socket' => env('DB_SOCKET', ''),
+            // 'unix_socket' => env('DB_SOCKET', '/var/lib/mysql/mysql.sock'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'strict' => true,
-            'engine' => null,        ],
+            'engine' => null,        
+        ],
 
         // dien may cho lon
 

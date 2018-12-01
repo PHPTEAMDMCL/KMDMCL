@@ -33,6 +33,12 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/listnote9',function(){
 			return view("v2018.m11.listnote9");
 		});
+		Route::get('/ngay-ruc-lua',"ReddayController@index");
+
+		
+	});
+	Route::group(["prefix"=>"12"],function(){
+		Route::get('/qua-tet-samsung',"BimatsamsungController@index");
 	});
 
 });
@@ -54,9 +60,29 @@ Route::group(['namespace'=>"Auth"],function(){
 				return Redirect::to('/login');
 			});
 });
-
+Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],function(){
+			Route::group(["prefix"=>"redday"],function(){
+				Route::any("add","ReddayController@add");
+				Route::any("lists","ReddayController@lists");
+				Route::any("edit/{id}","ReddayController@edit");
+				Route::any("removed/{id}","ReddayController@removed");
+			});
+			Route::group(["prefix"=>"bimat"],function(){
+				Route::any("add","BimatsamsungController@add");
+				Route::any("lists","BimatsamsungController@lists");
+				Route::any("edit/{id}","BimatsamsungController@edit");
+				Route::any("removed/{id}","BimatsamsungController@removed");
+			});
+ });
 Route::group(["prefix"=>"admin","namespace"=>"Amin","middleware"=>'auth'],function(){
-	
+		Route::group(['prefix'=>'index'],function(){
+			Route::get("/index",function(){
+				return view("admin.dashboard.index");
+			});
+		});
+		
+		
+
 		Route::get("/dashboard",function(){
 			return view("admin.dashboard.index");
 		});

@@ -2,9 +2,34 @@
   .nav-collapse.sidebar-nav
     ul.nav.nav-tabs.nav-stacked.main-menu
       li
-        a(href='/admin/dashboard')
+        a(href='/admin/index/index')
           i.icon-bar-chart
-          span.hidden-tablet  Dashboard
+          span.hidden-tablet  Thông tin chung 
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet Ngày rửa lửa 
+          
+        ul
+          li
+            a.submenu(href='/admin/redday/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/redday/lists')
+              span.hidden-tablet Danh sách con hàng
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet Bí mật Samsung 
+          
+        ul
+          li
+            a.submenu(href='/admin/bimat/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/bimat/lists')
+              span.hidden-tablet Danh sách con hàng 
+         
       li
         a.dropmenu(href='#')
           i.icon-folder-close-alt

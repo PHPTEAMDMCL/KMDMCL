@@ -11,11 +11,11 @@ class User extends Model
     protected $table="users";
 
 
-    protected static function getUser($username,$password)
+    protected static function getUser($username)
 		{
 			try 
 			{
-				$us=User::where('username','=',$username)->where('password','=',$password)->get();
+				$us=User::where('username','=',$username)->get();
 				if(count($us)==1)
 				{
 					return $us;

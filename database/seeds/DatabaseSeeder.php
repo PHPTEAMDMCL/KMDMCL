@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             'name'     => 'Chris Sevilleja',
             'username' => 'admin',
 	        'email'    => 'chris@scotch.io',
-	        'password' => Hash::make('admin'),
+	        'password' => Hash::make('admin@kmdmcl'),
         ]);
     }
 }
