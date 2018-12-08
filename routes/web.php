@@ -26,7 +26,9 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	});
 	Route::group(["prefix"=>"11"],function(){
 		//landing page 11/11
-		Route::get('/sale-11-11', "ProductController@single");
+		Route::get('/sale-11-11',function(){
+			return redirect("http://khuyenmai.dienmaycholon.vn");
+		});
 		Route::get('/note9', function(){
 			return view("v2018.m11.note9");
 		});
@@ -39,6 +41,7 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	});
 	Route::group(["prefix"=>"12"],function(){
 		Route::get('/qua-tet-samsung',"BimatsamsungController@index");
+		Route::get('/sale-12-12','SaledecemberController@index');
 	});
 
 });
@@ -72,6 +75,12 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("lists","BimatsamsungController@lists");
 				Route::any("edit/{id}","BimatsamsungController@edit");
 				Route::any("removed/{id}","BimatsamsungController@removed");
+			});
+			Route::group(["prefix"=>"saledecember"],function(){
+				Route::any("add","SaledecemberController@add");
+				Route::any("lists","SaledecemberController@lists");
+				Route::any("edit/{id}","SaledecemberController@edit");
+				Route::any("removed/{id}","SaledecemberController@removed");
 			});
  });
 Route::group(["prefix"=>"admin","namespace"=>"Amin","middleware"=>'auth'],function(){

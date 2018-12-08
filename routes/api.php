@@ -19,7 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	Route::group(["prefix"=>"11"],function(){
 		Route::get('/ngay-ruc-lua',"ReddayController@loadapi");
-		Route::get('/bi-mat-samsung',"BimatsamsungController@loadapi");
+		
 	});
-
+	Route::group(["prefix"=>"12"],function(){
+		Route::get('/sale-12-12',"SaledecemberController@loadapi");
+	});
 });

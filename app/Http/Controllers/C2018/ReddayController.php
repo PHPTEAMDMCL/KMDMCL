@@ -32,13 +32,7 @@ class ReddayController extends AppController
     }
     public function loadapi(Request $request){
 
-        if($request->input("main")){
-
-            $this->View['main']=1;
-            $this->View['data_list']=DTRedday::where("price","<>",'')->orderBy("id","DESC")->paginate(12);
-             
-            return view("v2018.m11.reddaymainapi",$this->View);
-        }else{
+      
             $this->View['main']=2;
             $cate= $request->input("cate",21);
             $sort=['id','DESC'];
@@ -51,7 +45,7 @@ class ReddayController extends AppController
                 }
             }
             $this->View['data_list']=DTRedday::where("cid_cate",$cate)->orderBy($sort[0],$sort[1])->paginate(12);
-        }
+        
 
         return view("v2018.m11.reddayloadapi",$this->View);
     }

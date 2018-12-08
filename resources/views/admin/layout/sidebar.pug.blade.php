@@ -29,7 +29,18 @@
           li
             a.submenu(href='/admin/bimat/lists')
               span.hidden-tablet Danh sách con hàng 
-         
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet Sale December
+          
+        ul
+          li
+            a.submenu(href='/admin/saledecember/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/saledecember/lists')
+              span.hidden-tablet Danh sách con hàng    
       li
         a.dropmenu(href='#')
           i.icon-folder-close-alt

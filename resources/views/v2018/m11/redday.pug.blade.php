@@ -38,15 +38,7 @@ html
       });
     script(type='text/javascript').
       jQuery(document).ready(function($){
-          $(".filterprice").change(function(){
-              if($(this).val()!='0'){
-                  var idx= $(".current_tab_dt").attr("idx");
-                  var cate= $(".current_tab_dt").attr("cate");
-                  $.get("/api/2018/11/ngay-ruc-lua?cate="+cate + "&o="+$(this).val(),function(result){
-                      $(".my_box_content"+idx).children('ul').html(result);
-                  });
-              }
-          });
+         
           $(".btn_morepro").click(function(){
              $("body").css("cursor","wait");
              var lastpage= parseInt($(this).attr("lastpage"));
@@ -63,7 +55,7 @@ html
                         });
                 }else{
                       var idx=$(this).attr("idx");
-                      $.get("/api/2018/11/ngay-ruc-lua?cate="+$(this).attr("cate")+"&o="+$('.filterprice').val()+"&page="+currentPage,function(result){
+                      $.get("/api/2018/11/ngay-ruc-lua?cate="+$(this).attr("cate")+"&page="+currentPage,function(result){
                              $("body").css("cursor","auto");
                             $(".my_box_content"+idx).children("ul").append(result);
                         });
@@ -143,11 +135,7 @@ html
         .content_tabs1
           .box_orderby
             span.title_orderby Sắp xếp theo
-            form.frm_order(method='', id='')
-              select#orderby.filterprice(name='orderby')
-                option(value='0') -- Chọn --
-                option(value='1') Giá từ thấp đến cao
-                option(value='2') Giá từ cao đến thấp
+            
         .cp_boxtabsfull
           
           .my_box_content2.box_cotent

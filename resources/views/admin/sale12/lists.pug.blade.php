@@ -6,15 +6,17 @@ ul.breadcrumb
     a(href='/') Trang chủ
     i.icon-angle-right
   li
-    a(href='#') Danh sách Sản phẩm chạy REDDAY 
-
-.row-fluid.sortable
+    a(href='#') Danh sách Sản phẩm sale 12.12
+  li(style='float:right')
+    a(href='/2018/12/sale-12-12' style='color:red' target='_blank') Xem trang
+a.btn.btn-primary(href='/admin/saledecember/lists?change_value=1&nhom=1' style='float:right;margin-bottom:5px') Update Price
+.row-fluid.sortable 
   .box.span12
     .box-header(data-original-title='')
       h2
         i.halflings-icon.white.user
         span.break
-        | Danh sách chương trình Ngày rực lửa (  Tổng ( {{$data_list->total() }}))
+        | Danh sách chương trình Sale 12.12 (  Tổng : {{count($data_list)}} )
      
     .box-content
       table.table.table-striped.table-bordered.bootstrap-datatable.datatable
@@ -23,8 +25,10 @@ ul.breadcrumb
             th ID 
             th Danh mục 
             th Sản phẩm 
-            th Giá 
-            th Phần trăm 
+            th Gía thị trường
+            th Gía bán
+            th Gía xx
+            th Phần trăm
             th Tuỳ chọn 
             
         tbody
@@ -33,17 +37,17 @@ ul.breadcrumb
           tr
             td.center {{$ln['id']}}
             td.center {{$ln->Cate()['name']}}
-           	td.center  {{$ln->Product()['name']}}
-            td.center {{$ln['price']}}  
-            td.center {{$ln['percent']}}  
+           	td.center {{$ln->Product()['name']}}
+            td.center {{number_format($ln['saleprice'])}}
+            td.center {{number_format($ln['discount'])}} 
+            td.center {{$ln['price']}}
+            td.center {{$ln['percent']}}
             td.center 
-            	a.btn.btn-small.btn-primary(href="/admin/redday/edit/"+$ln['id']) EDIT 
+            	a.btn.btn-small.btn-primary(href="/admin/saledecember/edit/"+$ln['id']) EDIT 
             	p
-            	a.click_remove.btn.btn-small.btn-success(href="/admin/redday/removed/"+$ln['id']+"?_token="+csrf_token()) REMOVED 
+            	a.click_remove.btn.btn-small.btn-success(href="/admin/saledecember/removed/"+$ln['id']+"?_token="+csrf_token()) REMOVED 
           @endforeach
           @endif
-  nav
-        {!!$data_list->render()!!}
 script(src='/admin/js/main.js')
 script.
 	$(".click_remove").click(function(){

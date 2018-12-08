@@ -3,8 +3,8 @@
     span.icon-bar
     span.icon-bar
     span.icon-bar
-  a.brand(href='index.html')
-    span DMCL 
+  a.brand(href='https://dienmaycholon.vn/')
+    img.animated1.fadeInDown(src='/admin/img/logo-dmcl.png', alt='dienmaycholon' width='150') 
   .nav-no-collapse.header-nav
     ul.nav.pull-right
     

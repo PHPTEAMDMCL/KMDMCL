@@ -151,16 +151,16 @@ section.box_popup.search_maxcoupon
             | THỂ LỆ CHƯƠNG TRÌNH
           .introduce2
             p.pinfo
-              |     Chương trình mua online Samsung nhận Coupon % giảm như sau: <br>
+              |     Chương trình mua online Samsung nhận Coupon giảm giá như sau: <br>
               |     <span>● Bước 1:</span> Truy cập vào trang chi tiết sản phẩm mà khách hàng chọn mua.<br>
               |     <span>● Bước 2:</span> Khách hàng điền đầy đủ thông tin: Tên + Số Điện Thoại vào ô thông tin.<br>
-              |     <span>● Bước 3:</span> Khách hàng chọn nhấn vào 1 trong 3 phong bao lì xì sẽ hiện ra % giảm.<br>
+              |     <span>● Bước 3:</span> Khách hàng chọn nhấn vào 1 trong 3 phong bao lì xì sẽ hiện ra giá trị giảm giá.<br>
               |     <span>● Bước 4:</span> Giữ và sử dụng mã code được nhận hoàn tất đặt hàng để nhận khuyến mãi hoặc liên hệ 
               |      Hotline: 028-38563388 để hỗ trợ chi tiết.<br><br>
               |      <span>(*) Lưu ý:</span><br>
               |      - Sản phẩm tham gia chương trinh bao gồm tủ lạnh &amp; máy giặt samsung<br>
               |      - Mã Coupon chỉ áp dụng giảm giá Online. <br>
-              |      - Giá trị mã coupon giảm đến 3% - 5% - 7% theo xác suất ngẫu nhiên xuất hiện <br>
+              |      - Giá trị mã coupon giảm đến 300.000Đ - 500.000Đ - 700.000Đ theo xác suất ngẫu nhiên xuất hiện <br>
               |      - Mỗi SĐT tham gia được 1 lần/1 mã Coupon/ 1 mã SP/ 1 Model<br>
               |      <span>(**)</span> Chương trình áp dụng đến hết 28/02/2019<br>
             p.photline
