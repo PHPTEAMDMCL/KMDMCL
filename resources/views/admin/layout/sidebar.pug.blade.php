@@ -59,6 +59,18 @@
           li
             a.submenu(href='/admin/landing/list-unactive')
               span.hidden-tablet Ngưng đang chạy
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet TechcomBank
+          
+        ul
+          li
+            a.submenu(href='/admin/techcombank/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/techcombank/lists')
+              span.hidden-tablet Danh sách con hàng
       //- li
       //-   a(href='form.html')
       //-     i.icon-edit

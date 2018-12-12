@@ -11,7 +11,7 @@ class SaledecemberController extends AppController
     //
     public function index(){
 
-    	$this->View["maylanh"]=Sale::where("cid_cate",32)->orderBy("id","ASC")->paginate(12);
+    	$this->View["didong"]=Sale::where("cid_cate",13)->orderBy("id","ASC")->paginate(12);
     	$this->View["tivi"]=Sale::where("cid_cate",8)->orderBy("id","ASC")->paginate(12);
     	$this->View["tulanh"]=Sale::where("cid_cate",18)->orderBy("id","ASC")->paginate(12);
     	$this->View["maygiat"]=Sale::where("cid_cate",3)->orderBy("id","ASC")->paginate(12);

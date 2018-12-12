@@ -92,12 +92,12 @@ html(lang="vi-VN")
 								a(href='#tivi' title='TIVI') TIVI
 							li.menunav_li(idx='2' ,cate='18')
 								a(href='#tulanh' title='Tủ lạnh') Tủ lạnh
-							li.menunav_li(idx='3',cate='32')
-								a(href='#maylanh' title='Máy lạnh') Máy lạnh
 							li.menunav_li(idx='4',cate='3')
 								a(href='#maygiat' title='Máy giặt') Máy giặt
 							li.menunav_li(idx='5',cate='9')
 								a(href='#giadung' title='Gia dụng') Gia dụng
+							li.menunav_li(idx='3',cate='13')
+								a(href='#didong' title='Di động') Di động
 		section
 			.container_screen
 				div.box_content.my_box_content1
@@ -175,43 +175,6 @@ html(lang="vi-VN")
 						button.btn_seemore(type='button' , idx='2', cate='18' , lastpage=$tulanh->lastPage() ,page=$tulanh->currentPage())
 							| Xem thêm sản phẩm tủ lạnh khác
 					@endif
-				div.box_content.my_box_content3
-					ul.list_product
-						@if(!empty($maylanh))
-						@foreach($maylanh as $p)
-						@if(!empty($p->Product()['name']) && !empty($p->Product()->Cate()['name']))
-						li
-							a.img_pro(href="https://dienmaycholon.vn/".$p->Product()->Cate()['alias']."/".$p->Product()['alias'] , target="_black")
-								img(src='https://dienmaycholon.vn/public/picture/tmp/product_'.$p['cid_product'].'_220_220.jpg', alt='#')
-								i.icon11
-							.info_price
-								h3.info_name
-									| {{$p->Product()['name'] }}
-								span Giá bán
-								strong {{App\MrData::toPrice($p['saleprice'])}}
-							p.notepercent
-								span Giảm thêm 12.12 &nbsp;
-								@if(!empty($p['percent']))
-								strong {{$p['percent']}}%
-								@endif
-							.box_pro_info
-								.show_gift_promo
-									@if(!empty($p['price']))
-									p
-										| Giá bán &nbsp;
-										span {{$p['price']}} Đ
-									@endif
-								.box_muangay
-									a.add_muangay(href='tel:02838563388' title='Hotline mua hàng')
-									a.add_muangay1(href="https://dienmaycholon.vn/".$p->Product()->Cate()['alias']."/".$p->Product()['alias'] title='Mua ngay' target='_blank')
-						@endif
-						@endforeach
-						@endif
-					@if($maylanh->hasMorePages())
-					.boxseemore
-						button.btn_seemore(type='button' , idx='3', cate='32' , lastpage=$maylanh->lastPage() ,page=$maylanh->currentPage())
-							| Xem thêm sản phẩm máy lạnh khác
-					@endif
 				div.box_content.my_box_content4
 					ul.list_product
 						@if(!empty($maygiat))
@@ -285,6 +248,43 @@ html(lang="vi-VN")
 					.boxseemore
 						button.btn_seemore(type='button' , idx='5', cate='9' , lastpage=$giadung->lastPage() ,page=$giadung->currentPage())
 							| Xem thêm sản phẩm gia dụng khác
+					@endif
+				div.box_content.my_box_content3
+					ul.list_product
+						@if(!empty($didong))
+						@foreach($didong as $p)
+						@if(!empty($p->Product()['name']) && !empty($p->Product()->Cate()['name']))
+						li
+							a.img_pro(href="https://dienmaycholon.vn/".$p->Product()->Cate()['alias']."/".$p->Product()['alias'] , target="_black")
+								img(src='https://dienmaycholon.vn/public/picture/tmp/product_'.$p['cid_product'].'_220_220.jpg', alt='#')
+								i.icon11
+							.info_price
+								h3.info_name
+									| {{$p->Product()['name'] }}
+								span Giá bán
+								strong {{App\MrData::toPrice($p['saleprice'])}}
+							p.notepercent
+								span Giảm thêm 12.12 &nbsp;
+								@if(!empty($p['percent']))
+								strong {{$p['percent']}}%
+								@endif
+							.box_pro_info
+								.show_gift_promo
+									@if(!empty($p['price']))
+									p
+										| Giá bán &nbsp;
+										span {{$p['price']}} Đ
+									@endif
+								.box_muangay
+									a.add_muangay(href='tel:02838563388' title='Hotline mua hàng')
+									a.add_muangay1(href="https://dienmaycholon.vn/".$p->Product()->Cate()['alias']."/".$p->Product()['alias'] title='Mua ngay' target='_blank')
+						@endif
+						@endforeach
+						@endif
+					@if($didong->hasMorePages())
+					.boxseemore
+						button.btn_seemore(type='button' , idx='3', cate='13' , lastpage=$didong->lastPage() ,page=$didong->currentPage())
+							| Xem thêm sản phẩm di động khác
 					@endif
 		footer
 			p Bản quyền © 2001 - 2018 thuộc về Công ty TNHH Cao Phong

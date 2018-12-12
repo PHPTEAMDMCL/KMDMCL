@@ -23,5 +23,6 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	});
 	Route::group(["prefix"=>"12"],function(){
 		Route::get('/sale-12-12',"SaledecemberController@loadapi");
+		Route::get('/techcombank','TechcombankController@loadapi');
 	});
 });
