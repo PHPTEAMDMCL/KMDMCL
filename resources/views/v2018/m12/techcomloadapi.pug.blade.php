@@ -2,9 +2,9 @@
 @foreach($data_list as $p)
 @if(!empty($p->Product()['name']) && !empty($p->Product()->Cate()['name']))
 li
-	a.img_pro(href="https://dienmaycholon.vn/".$p->Product()->Cate()['alias']."/".$p->Product()['alias'] , target="_black")
-		img(src='https://dienmaycholon.vn/public/picture/tmp/product_'.$p['cid_product'].'_220_220.jpg', alt='#')
-	
+	a.img_pro(href="https://dienmaycholon.vn/".$p->Product()->Cate()['alias']."/".$p->Product()['alias'] , target="_blank")
+		img(src='https://dienmaycholon.vn/public/picture/tmp/product_'.$p['cid_product'].'_220_220.jpg', alt=($p->Product()['name']))
+		i.iconx
 	.info_price
 		h3.info_name
 			| {{$p->Product()['name'] }}

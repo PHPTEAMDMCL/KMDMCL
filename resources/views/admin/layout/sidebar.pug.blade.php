@@ -71,6 +71,18 @@
           li
             a.submenu(href='/admin/techcombank/lists')
               span.hidden-tablet Danh sách con hàng
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet SamSung Online
+          
+        ul
+          li
+            a.submenu(href='/admin/samsung/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/samsung/lists')
+              span.hidden-tablet Danh sách con hàng
       //- li
       //-   a(href='form.html')
       //-     i.icon-edit

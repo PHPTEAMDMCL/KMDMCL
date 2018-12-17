@@ -101,9 +101,9 @@ class SaledecemberController extends Controller
     public function lists(Request $request){
     	if($search_id=$request->input("search_id")){
           
-            $this->View['data_list']=Sale::where("cid_product",$search_id)->orderBy("cid_cate","ASC")->get();
+            $this->View['data_list']=Sale::where("cid_product",$search_id)->orderBy("cid_cate","ASC")->paginate(20);
         }else{
-            $this->View['data_list']=Sale::orderBy("id","DESC")->get();
+            $this->View['data_list']=Sale::orderBy("id","DESC")->paginate(20);
         }
         
         if($request->input("change_value")){

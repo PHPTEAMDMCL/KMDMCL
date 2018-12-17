@@ -11,6 +11,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.7",
+        "intervention/image": "^2.4",
         "pug-php/pug": "^3.2"
     },
     "require-dev": {

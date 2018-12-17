@@ -9,8 +9,8 @@ html(lang='en')
 	    meta(name='viewport', content='width=device-width, initial-scale=1')
 	    link#bootstrap-style(href='/admin/css/bootstrap.min.css', rel='stylesheet')
 	    link(href='/admin/css/bootstrap-responsive.min.css', rel='stylesheet')
-	    link#base-style(href='/admin/css/style.css', rel='stylesheet')
-	    link#base-style-responsive(href='css/style-responsive.css', rel='stylesheet')
+	    link#base-style(href=asset('/admin/css/style.css'), rel='stylesheet')
+	    link#base-style-responsive(href=asset('css/style-responsive.css'), rel='stylesheet')
 	    
 	    meta(name="csrf-token" content=csrf_token())
 	    style(type='text/css').

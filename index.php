@@ -7,6 +7,7 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+
 define('LARAVEL_START', microtime(true));
 define("PATH_PUBLIC",__DIR__);
 /*
@@ -49,6 +50,9 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 |
 */
 
+header("HTTP/1.1 200 OK"); 
+http_response_code(200);
+
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $app->bind('path.public', function() {
   return __DIR__;
@@ -60,3 +64,4 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+?>

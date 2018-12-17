@@ -43,6 +43,7 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/qua-tet-samsung',"BimatsamsungController@index");
 		Route::get('/sale-12-12','SaledecemberController@index');
 		Route::get('/techcombank','TechcombankController@index');
+		Route::get('/samsung-online','SamsungonlineController@index');
 	});
 
 });
@@ -88,6 +89,12 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("lists","TechcombankController@lists");
 				Route::any("edit/{id}","TechcombankController@edit");
 				Route::any("removed/{id}","TechcombankController@removed");
+			});
+			Route::group(["prefix"=>"samsung"],function(){
+				Route::any("add","SamsungonlineController@add");
+				Route::any("lists","SamsungonlineController@lists");
+				Route::any("edit/{id}","SamsungonlineController@edit");
+				Route::any("removed/{id}","SamsungonlineController@removed");
 			});
  });
 Route::group(["prefix"=>"admin","namespace"=>"Amin","middleware"=>'auth'],function(){
