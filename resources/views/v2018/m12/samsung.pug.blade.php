@@ -54,9 +54,11 @@ html(lang="vi-VN")
 						img(src="/y2018/m12/samsung/img/img-right.png" alt="sắm công nghệ đỉnh" class="animated3 pulse")
 		div.boxnav
 			.boxnavscreen
-				a(href="tri-an-khach-hang.html", class="current", title="Samsung tri ân khách hàng")
+				a(href="/2018/12/qua-tet-linh-dinh", title="quà tết linh đình" target="_blank" )
+					span QUÀ TẾT LINH ĐÌNH
+				a(href="/2018/12/samsung-online", class="current", title="Samsung tri ân khách hàng")
 					span TRI ÂN KHÁCH HÀNG
-				a(href="javascript:;", class="", title="Săn voucher cùng grab reward")
+				a(href="/2018/12/san-voucher-grab-reward", title="Săn voucher cùng grab reward",target="_blank")
 					span SĂN VOUCHER CÙNG GRAB REWARD
 		section.tab-content
 			.container_screen.box_rule
@@ -344,14 +346,14 @@ html(lang="vi-VN")
 							a.btn_seemore(href="https://dienmaycholon.vn/may-giat-samsung", alt="#", target="_blank") Xem thêm sản phẩm máy giặt khác
 			div#tab15m.tab-pane.container_screen
 				ul(class="menunav")
-					li.menunav_li.active
-						a(href='#tivi15m', title='tivi', data-toggle='tab') tivi
 					li.menunav_li
+						a(href='#tivi15m', title='tivi', data-toggle='tab') tivi
+					li.menunav_li.active
 						a(href='#tulanh15m', title='tủ lạnh', data-toggle='tab') tủ lạnh
 					li.menunav_li
 						a(href='#maygiat15m', title='máy giặt', data-toggle='tab') máy giặt
 				div.box_content.my_box_content1.tab-content
-					.tab-pane.active#tivi15m
+					.tab-pane#tivi15m
 						ul.list_product
 							@if(!empty($tivi15M))
 							@foreach($tivi15M as $p)
@@ -374,7 +376,7 @@ html(lang="vi-VN")
 							@endif
 						.boxseemore
 							a.btn_seemore(href="https://dienmaycholon.vn/tivi-led-samsung", alt="#", target="_blank") Xem thêm sản phẩm tivi khác
-					.tab-pane#tulanh15m
+					.tab-pane.active#tulanh15m
 						ul.list_product
 							@if(!empty($tulanh15M))
 							@foreach($tulanh15M as $p)

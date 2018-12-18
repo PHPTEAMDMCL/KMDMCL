@@ -44,6 +44,8 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/sale-12-12','SaledecemberController@index');
 		Route::get('/techcombank','TechcombankController@index');
 		Route::get('/samsung-online','SamsungonlineController@index');
+		Route::get('/san-voucher-grab-reward','GrabController@index');
+		Route::get('/qua-tet-linh-dinh','GrabController@newyear');
 	});
 
 });
@@ -95,6 +97,24 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("lists","SamsungonlineController@lists");
 				Route::any("edit/{id}","SamsungonlineController@edit");
 				Route::any("removed/{id}","SamsungonlineController@removed");
+			});
+			Route::group(["prefix"=>"grab"],function(){
+				Route::any("add","GrabController@add");
+				Route::any("lists","GrabController@lists");
+				Route::any("edit/{id}","GrabController@edit");
+				Route::any("removed/{id}","GrabController@removed");
+			});
+			Route::group(["prefix"=>"promotion"],function(){
+				Route::any("add","PromotionController@add");
+				Route::any("lists","PromotionController@lists");
+				Route::any("edit/{id}","PromotionController@edit");
+				Route::any("removed/{id}","PromotionController@removed");
+			});
+			Route::group(["prefix"=>"quatet"],function(){
+				Route::any("add","QuatetController@add");
+				Route::any("lists","QuatetController@lists");
+				Route::any("edit/{id}","QuatetController@edit");
+				Route::any("removed/{id}","QuatetController@removed");
 			});
  });
 Route::group(["prefix"=>"admin","namespace"=>"Amin","middleware"=>'auth'],function(){
