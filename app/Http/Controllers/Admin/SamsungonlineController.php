@@ -37,6 +37,7 @@ class SamsungonlineController extends Controller
     			}else{
 
     				$check_product= DTProduct::where("sap_code","LIKE",$request->input("cid_product"))->first();
+                 
     				if(empty($check_product['id'])){
     					$validater->errors()->add("cid_product","Sản phẩm này không tồn tại, Vui lòng kiểm tra lại sản phẩm  trên website");
     					return redirect()->back()->withErrors($validater)->withInput();
@@ -50,6 +51,7 @@ class SamsungonlineController extends Controller
     				$TNews->cid_cate= $request->input("cid_cate");
                     $TNews->idvoucher = $request->input("idvoucher");
     				$TNews->cid_product=$check_product->id;
+                    $TNews->name = $check_product->name;
                     $TNews->saleprice=$check_product->getPrice()['saleprice'];
                     $TNews->discount=$check_product->getPrice()['discount'];
                    	//upload image
@@ -98,6 +100,7 @@ class SamsungonlineController extends Controller
                     $TUpdate->idvoucher = $request->input('idvoucher');
     				$TUpdate->cid_cate= $request->input("cid_cate");
     				$TUpdate->cid_product=$check_product->id;
+
                     $TUpdate->saleprice=$check_product->getPrice()['saleprice'];
                     $TUpdate->discount=$check_product->getPrice()['discount'];
                    	

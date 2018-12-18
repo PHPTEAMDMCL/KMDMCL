@@ -26,5 +26,14 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/techcombank','TechcombankController@loadapi');
 		Route::get('/grab-load','GrabController@loadapi');
 		Route::get('/qua-tet-load','GrabController@quatetloadapi');
+		Route::get('/get-data','GrabController@api');
 	});
+});
+
+
+//restful-api
+
+Route::group(['namespace'=>'Api'],function(){
+	Route::get('/get-data','ApiController@getall');
+	Route::get('/get-cate','ApiController@getcate');
 });

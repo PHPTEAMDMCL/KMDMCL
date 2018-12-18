@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 //mix.js('resources/js/app.js', 'public/js')
   // .sass('resources/sass/app.scss', 'public/css');
-  mix.js('resources/y2018/m10/test/app.js', 'public/y2018/m10/js')
-   .sass('resources/y2018/m10/test/app.scss', 'public/y2018/m10/css');
+  // mix.js('resources/y2018/m10/test/app.js', 'public/y2018/m10/js')
+  //  .sass('resources/y2018/m10/test/app.scss', 'public/y2018/m10/css');
 
+mix.js('resources/y2018/m12/react/app.js', 'public/y2018/m12/js');
+   // .sass('resources/y2018/m12/react/app.scss', 'public/y2018/m12/css');
