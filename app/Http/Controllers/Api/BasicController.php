@@ -38,11 +38,11 @@ class BasicController extends Controller
         ];
 
         $result =[
-            '300k'  => $data300,
-            '500k'  => $data500,
-            '1M'    => $data1M,
-            '1.5M'  => $data15M,
-            '2M'    => $data2M
+            'voucher300k'  => $data300,
+            'voucher500k'  => $data500,
+            'voucher1M'    => $data1M,
+            'voucher1.5M'  => $data15M,
+            'voucher2M'    => $data2M
             
             ];
         $response = [

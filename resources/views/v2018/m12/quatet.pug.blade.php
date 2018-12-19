@@ -59,9 +59,9 @@ html(lang="vi-VN")
 			hash && $('.menunav li a[href="' + hash + '"]').tab('show');
 			 $('.menunav a').click(function (e) {
 			    $(this).tab('show');
-			    var scrollmem = $('body').scrollTop();
+			    var scrollmem = $('.tab-pane').offset();
 			    window.location.hash = this.hash;
-			    $('html,body').scrollTop(scrollmem);
+			    $('html,body').scrollTop(scrollmem.top - 100);
 			});
 			});
 	body
