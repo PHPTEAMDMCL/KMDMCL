@@ -14,11 +14,15 @@ class Samsung extends JsonResource
      */
     public function toArray($request)
     {
+        
         return [
             'id' => $this->id,
             'cid_cate' => $this->cid_cate,
             'cid_product' => $this->cid_product,
-            'name'=>$this->name,
+            'name_product'=>$this->name_product,
+            'name_cate'=>$this->name_cate,
+            'cate_alias'=>$this->cate_alias,
+            'alias_product'=>$this->alias_product,
             'discount' => $this->discount,
             'saleprice' => $this->saleprice,
             'idvoucher' => $this->idvoucher,

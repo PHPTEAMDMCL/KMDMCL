@@ -55,6 +55,14 @@ html(lang="vi-VN")
 		                        });
 		                
 		          });
+		    var hash = window.location.hash;
+			hash && $('.menunav li a[href="' + hash + '"]').tab('show');
+			 $('.menunav a').click(function (e) {
+			    $(this).tab('show');
+			    var scrollmem = $('body').scrollTop();
+			    window.location.hash = this.hash;
+			    $('html,body').scrollTop(scrollmem);
+			});
 			});
 	body
 		header

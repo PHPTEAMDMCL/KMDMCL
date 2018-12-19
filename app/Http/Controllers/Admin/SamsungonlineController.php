@@ -47,11 +47,17 @@ class SamsungonlineController extends Controller
                        $validater->errors()->add("cid_product","SAP tồn tại trong chương trình, Vui lòng kiểm tra lại.");
                         return redirect()->back()->withErrors($validater)->withInput(); 
                     }
+                   
+                    $check_cate =  DTCate::where('id',$check_product['cid_cate'])->first();
+                  
     				$TNews= new Samsung();
     				$TNews->cid_cate= $request->input("cid_cate");
                     $TNews->idvoucher = $request->input("idvoucher");
     				$TNews->cid_product=$check_product->id;
-                    $TNews->name = $check_product->name;
+                    $TNews->name_product = $check_product->name;
+                    $TNews->alias_product = $check_product->alias;
+                    $TNews->name_cate = $check_cate->name;
+                    $TNews->cate_alias=$check_cate->alias;
                     $TNews->saleprice=$check_product->getPrice()['saleprice'];
                     $TNews->discount=$check_product->getPrice()['discount'];
                    	//upload image
@@ -95,12 +101,16 @@ class SamsungonlineController extends Controller
     					$validater->errors()->add("cid_product","Sản phẩm này không tồn tại, Vui lòng kiểm tra lại sản phẩm  trên website");
     					return redirect()->back()->withErrors($validater)->withInput();
     				}
+                    $check_cate =  DTCate::where('id',$check_product['cid_cate'])->first();
                     $picture = $request->file('picture');
     				$TUpdate = Samsung::find($id);
                     $TUpdate->idvoucher = $request->input('idvoucher');
     				$TUpdate->cid_cate= $request->input("cid_cate");
     				$TUpdate->cid_product=$check_product->id;
-
+                    $TUpdate->name_product = $check_product->name;
+                    $TUpdate->alias_product = $check_product->alias;
+                    $TUpdate->name_cate = $check_cate->name;
+                    $TUpdate->cate_alias=$check_cate->alias;
                     $TUpdate->saleprice=$check_product->getPrice()['saleprice'];
                     $TUpdate->discount=$check_product->getPrice()['discount'];
                    	
