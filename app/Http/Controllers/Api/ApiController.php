@@ -14,17 +14,35 @@ use App\Http\Controllers\Api\BasicController;
 class ApiController extends BasicController
 {
     
-    protected $View=[];
     public function getall(){
-        $data300 = Samsung::where('idvoucher','=','1')->get();
-        $data500 = Samsung::where('idvoucher','=','2')->get();
-        $data1M = Samsung::where('idvoucher','=','3')->get();
-        $data15M = Samsung::where('idvoucher','=','4')->get();
-        $data2M = Samsung::where('idvoucher','=','5')->get();
+        //voucher 300k
+        $tivi300=Samsung::where("cid_cate",8)->where('idvoucher','=','1')->orderBy("id","ASC")->get();
+        $tulanh300=Samsung::where("cid_cate",18)->where('idvoucher','=','1')->orderBy("id","ASC")->get();
+        $maygiat300=Samsung::where("cid_cate",3)->where('idvoucher','=','1')->orderBy("id","ASC")->get();
+
+        //voucher 500k
+        $tivi500=Samsung::where("cid_cate",8)->where('idvoucher','=','2')->orderBy("id","ASC")->get();
+        $tulanh500=Samsung::where("cid_cate",18)->where('idvoucher','=','2')->orderBy("id","ASC")->get();
+        $maygiat500=Samsung::where("cid_cate",3)->where('idvoucher','=','2')->orderBy("id","ASC")->get();
+
+        //voucher 1M
+        $tivi1M=Samsung::where("cid_cate",8)->where('idvoucher','=','3')->orderBy("id","ASC")->get();
+        $tulanh1M=Samsung::where("cid_cate",18)->where('idvoucher','=','3')->orderBy("id","ASC")->get();
+        $maygiat1M=Samsung::where("cid_cate",3)->where('idvoucher','=','3')->orderBy("id","ASC")->get();
+
+        //voucher 1.5M
+        $tivi15M=Samsung::where("cid_cate",8)->where('idvoucher','=','4')->orderBy("id","ASC")->get();
+        $tulanh15M=Samsung::where("cid_cate",18)->where('idvoucher','=','4')->orderBy("id","ASC")->get();
+        $maygiat15M=Samsung::where("cid_cate",3)->where('idvoucher','=','4')->orderBy("id","ASC")->get();
+
+        //voucher 2M
+        $tivi2M=Samsung::where("cid_cate",8)->where('idvoucher','=','5')->orderBy("id","ASC")->get();
+        $tulanh2M=Samsung::where("cid_cate",18)->where('idvoucher','=','5')->orderBy("id","ASC")->get();
+        $maygiat2M=Samsung::where("cid_cate",3)->where('idvoucher','=','5')->orderBy("id","ASC")->get();
         
         // Return a collection of $users with pagination
         // return SamsungResource::collection($data);
-         return $this->sendResponse($data300->toArray(),$data500->toArray(),$data1M->toArray(),$data15M->toArray(),$data2M->toArray());
+         return $this->sendResponse($tivi300->toArray(),$tulanh300->toArray(),$maygiat300->toArray(),$tivi500->toArray(),$tulanh500->toArray(),$maygiat500->toArray(),$tivi1M->toArray(),$tulanh1M->toArray(),$maygiat1M->toArray(),$tivi15M->toArray(),$tulanh15M->toArray(),$maygiat15M->toArray(),$tivi2M->toArray(),$tulanh2M->toArray(),$maygiat2M->toArray());
     }
     public function getcate(){
         $data = DTCate::get();
