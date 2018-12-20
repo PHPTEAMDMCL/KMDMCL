@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Read\Cate as DTCate;
+use App\Model\Read\Product as DTProduct;
 use App\Model\Write\Y2018\Samsung;
 use App\Http\Resources\Write\Samsung as SamsungResource;
 use App\Http\Resources\Read\Cate as CateResource;
@@ -49,5 +50,27 @@ class ApiController extends BasicController
 
         return CateResource::collection($data)->response()->header('X-Value', 'True');
     }
-   
+    
+    public function getproductcate($alias,Request $request){
+        $cate = DTCate::where('alias',$alias)->first();
+        if($cate->cid_parent == '0'){
+           
+            $parent = DTCate::where('cid_parent',$cate['id'])->where('status','1')->get();
+          
+            $product =array();
+            foreach ($parent as $cate) {
+
+                $product[$cate['id']] = DTProduct::getProductCateParent($cate['id']);    
+            }
+           
+            
+        }else{
+            $list = DTProduct::getProductCate($cate['id']);
+        }
+        if(!empty($list)){
+            return $this->sendApi($list,'List Product Cate');
+        }else{
+            return $this->sendApi($product,'List Product Cate parent');
+        }
+    }
 }

@@ -86,17 +86,19 @@ html(lang="vi-VN")
 						|	<strong>- Đối tượng áp dụng:</strong> Khách hàng Silver, Gold & Platinum của Grab <br/>
 						|	<strong>- Chi tiết chương trình:</strong> Khách hàng nhận E-Voucher 500.000 Đ mua online sản phẩm Samsung<br/>
 						|	+ Cách nhận voucher và sử dụng: <br/>
-						| 	1. Khách hàng đổi 5 điểm tại mục Grab Rewards để nhận e-voucher 500.000VNĐ<br/>
-						|	2. Lựa chọn sản phẩm trong nhóm voucher có danh sách sản phẩm được áp dụng<br/>
-						|	3. Click chọn sản phẩm và nhập mã trên website<br/>
+						| 	1. Chọn GrabReward tại thanh menu trong ứng dụng Grab<br/>
+						|	2. Tại danh mục ưu đãi chọn chương trình đổi điểm của Samsung, trong mục đại lý chọn Siêu thị Nội Thất - Điện Máy Chợ Lớn, sau đó đổi 5 điểm GrabRewards để lấy mã ưu đãi mua hàng Samsung. <br/>
+						|	3. Truy cập danh sách sản phẩm dưới đây, chọn sản phẩm muốn mua và nhập mã khuyến mãi để được giảm giá khi mua online.<br/>
 						|	4. Hoặc đưa mã e - Voucher cho nhân viên hỗ trợ khi mua sản phẩm trực tiếp tại siêu thị Điện Máy Chợ Lớn.<br/>
+						|	
 						|	<strong>- Thời gian diễn ra chương trình: </strong><b>20/12 - 28/02</b><br/>
 						| <b>*** Lưu ý</b><br/>
 						|   - Mã khuyến mãi có giá trị trong vòng 30 ngày kể từ ngày phát hành, hạn chót là 28/02/2019<br/>
 						|	- Mỗi mã chỉ áp dụng một lần và mua 1 sản phẩm<br/>
 						|	- Voucher không có giá trị quy đổi thành tiền mặt<br/>
 						|   - Chương trình chỉ áp dụng cho sản phẩm có trong danh sách<br/>
-						|	<a href="tel:02838563388" title="Tư vấn mua hàng" class="text_center"><img src="/y2018/m12/grab/img/hotline.jpg" alt="hotline"></a><br/>
+						|	- Nếu mã giảm giá không thể kích hoạt, vui lòng liên hệ hotline: <a href="tel:1800588889" title="Tư vấn mua hàng">1800-588-889</a><br/>
+						
 
 				.bg_title
 					h3 SẢN PHẨM ÁP DỤNG

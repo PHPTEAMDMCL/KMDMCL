@@ -36,4 +36,5 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 Route::group(['namespace'=>'Api'],function(){
 	Route::get('/get-data','ApiController@getall');
 	Route::get('/get-cate','ApiController@getcate');
+	Route::get('/get-product-cate/{alias}','ApiController@getproductcate');
 });

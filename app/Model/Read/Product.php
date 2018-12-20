@@ -24,6 +24,53 @@ class Product extends Model
 			return $listEx;
 				
 		}
+		protected static function getProductCate($id){
+			$sql_query="
+					SELECT DISTINCT a.id AS myid,a.name,a.code,a.cid_series,a.isprice,a.is_icon,a.is_model,a.is_price,a.is_flash_sale,a.is_sale,a.new_description,
+						a.is_red_day,a.is_double_price,a.is_million,
+						check_coupon(a.id,a.cid_cate,2) AS coupons,
+						check_coupon(a.id,a.cid_cate,1) AS discountcoupons,
+						b.discount,
+						b.saleprice,
+						b.id as cid_res,
+						b.is_promotion,
+						c.name AS namecate
+					FROM (  pro_product AS a INNER JOIN pro_supplier_product AS b ON a.id = b.cid_product )
+											 INNER JOIN pro_categories AS c ON c.id=a.cid_cate 
+											  
+					WHERE   
+								(b.stock_num > 0 OR (b.stock_num = 0 AND a.is_sample='0' ) )
+							    AND a.is_status_cate='1' AND a.status='1' AND b.status='1'  AND 
+								a.cid_cate=$id 					
+				";
+			return $result= DB::connection("mysql2")->select($sql_query);
+
+		}
+		protected static function getProductCateParent($id){
+			$sql="
+					SELECT DISTINCT  a.id AS myid,a.name,a.cid_series,a.isprice,a.is_icon,a.is_model,a.is_price,a.is_flash_sale,a.is_sale,a.new_description,
+						a.is_red_day,a.is_double_price,a.is_million,
+						check_coupon(a.id,a.cid_cate,2) AS coupons,
+						check_coupon(a.id,a.cid_cate,1) AS discountcoupons,
+						b.discount,
+						b.saleprice,
+						b.is_promotion,
+						b.id AS cid_res,
+						c.name AS namecate
+					FROM (  pro_product AS a INNER JOIN pro_supplier_product AS b ON a.id = b.cid_product )
+									INNER JOIN pro_categories AS c ON c.id=a.cid_cate
+											  
+					WHERE   
+								(b.stock_num > 0 OR (b.stock_num = 0 AND a.is_sample='0' ) )
+							    AND a.is_status_cate='1' AND a.status='1'  AND b.status='1'  AND b.cid_supplier='1' AND
+								a.cid_cate=$id
+					
+				  	ORDER BY  b.order_by DESC
+
+					LIMIT 8
+				";
+				return $result= DB::connection("mysql2")->select($sql);
+		}
 		public function Cate(){
 			return $this->belongsTo(Cate::class,"cid_cate")->getResults();
 		}

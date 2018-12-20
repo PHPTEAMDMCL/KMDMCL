@@ -9,6 +9,12 @@ use App\Model\Write\Y2018\Grab;
 class BasicController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        // Unique Token
+        $this->apiToken = uniqid(base64_encode(str_random(60)));
+    }
    public function sendResponse($tivi300,$tulanh300,$maygiat300,$tivi500,$tulanh500,$maygiat500,$tivi1M,$tulanh1M,$maygiat1M,$tivi15M,$tulanh15M,$maygiat15M,$tivi2M,$tulanh2M,$maygiat2M)
     {
         $data300 = [
@@ -46,27 +52,23 @@ class BasicController extends Controller
             
             ];
         $response = [
-            'data'    => $result
+            'data'    => $result,
+            'token'   => $this->apiToken
 
         ];
 
 
         return response()->json($response, 200);
     }
-    public function sendApi($data300,$data500,$data1M,$data15M,$data2M)
+    public function sendApi($data,$message)
     {
 
         
-        $result =[
-            '300k'  => $data300,
-            '500k'  => $data500,
-            '1M'    => $data1M,
-            '1.5M'  => $data15M,
-            '2M'    => $data2M
-            
-            ];
         $response = [
-            'data'    => $result
+            'data'    => $data,
+            'message' => $message,
+            'token'   => $this->apiToken
+
 
         ];
 
