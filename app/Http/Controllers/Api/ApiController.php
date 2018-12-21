@@ -10,40 +10,43 @@ use App\Model\Write\Y2018\Samsung;
 use App\Http\Resources\Write\Samsung as SamsungResource;
 use App\Http\Resources\Read\Cate as CateResource;
 use App\Http\Controllers\Api\BasicController;
-
+use App\Model\Write\Y2018\SaleDecember as Sale;
+use DB;
 
 class ApiController extends BasicController
 {
     
     public function getall(){
-        //voucher 300k
-        $tivi300=Samsung::where("cid_cate",8)->where('idvoucher','=','1')->orderBy("id","ASC")->get();
-        $tulanh300=Samsung::where("cid_cate",18)->where('idvoucher','=','1')->orderBy("id","ASC")->get();
-        $maygiat300=Samsung::where("cid_cate",3)->where('idvoucher','=','1')->orderBy("id","ASC")->get();
-
-        //voucher 500k
-        $tivi500=Samsung::where("cid_cate",8)->where('idvoucher','=','2')->orderBy("id","ASC")->get();
-        $tulanh500=Samsung::where("cid_cate",18)->where('idvoucher','=','2')->orderBy("id","ASC")->get();
-        $maygiat500=Samsung::where("cid_cate",3)->where('idvoucher','=','2')->orderBy("id","ASC")->get();
-
-        //voucher 1M
-        $tivi1M=Samsung::where("cid_cate",8)->where('idvoucher','=','3')->orderBy("id","ASC")->get();
-        $tulanh1M=Samsung::where("cid_cate",18)->where('idvoucher','=','3')->orderBy("id","ASC")->get();
-        $maygiat1M=Samsung::where("cid_cate",3)->where('idvoucher','=','3')->orderBy("id","ASC")->get();
-
-        //voucher 1.5M
-        $tivi15M=Samsung::where("cid_cate",8)->where('idvoucher','=','4')->orderBy("id","ASC")->get();
-        $tulanh15M=Samsung::where("cid_cate",18)->where('idvoucher','=','4')->orderBy("id","ASC")->get();
-        $maygiat15M=Samsung::where("cid_cate",3)->where('idvoucher','=','4')->orderBy("id","ASC")->get();
-
-        //voucher 2M
-        $tivi2M=Samsung::where("cid_cate",8)->where('idvoucher','=','5')->orderBy("id","ASC")->get();
-        $tulanh2M=Samsung::where("cid_cate",18)->where('idvoucher','=','5')->orderBy("id","ASC")->get();
-        $maygiat2M=Samsung::where("cid_cate",3)->where('idvoucher','=','5')->orderBy("id","ASC")->get();
         
-        // Return a collection of $users with pagination
-        // return SamsungResource::collection($data);
-         return $this->sendResponse($tivi300->toArray(),$tulanh300->toArray(),$maygiat300->toArray(),$tivi500->toArray(),$tulanh500->toArray(),$maygiat500->toArray(),$tivi1M->toArray(),$tulanh1M->toArray(),$maygiat1M->toArray(),$tivi15M->toArray(),$tulanh15M->toArray(),$maygiat15M->toArray(),$tivi2M->toArray(),$tulanh2M->toArray(),$maygiat2M->toArray());
+        $data['voucher300k'] = [
+            "tivi300"=>Samsung::where("cid_cate",'=','8')->where('idvoucher','=','1')->orderBy("id","ASC")->get(),
+            "tulanh300"=>Samsung::where("cid_cate",18)->where('idvoucher','=','1')->orderBy("id","ASC")->get(),
+            "maygiat300"=>Samsung::where("cid_cate",3)->where('idvoucher','=','1')->orderBy("id","ASC")->get()
+        ];
+        
+        $data['voucher500k'] = [
+            "tivi500"   =>Samsung::where("cid_cate",8)->where('idvoucher','=','2')->orderBy("id","ASC")->get(),
+            "tulanh500" =>Samsung::where("cid_cate",18)->where('idvoucher','=','2')->orderBy("id","ASC")->get(),
+            "maygiat500"=>Samsung::where("cid_cate",3)->where('idvoucher','=','2')->orderBy("id","ASC")->get()
+
+        ];
+        $data['voucher1M'] = [
+            "tivi1M"    =>Samsung::where("cid_cate",8)->where('idvoucher','=','3')->orderBy("id","ASC")->get(),
+            "tulanh1M"  =>Samsung::where("cid_cate",18)->where('idvoucher','=','3')->orderBy("id","ASC")->get(),
+            "maygiat1M" =>Samsung::where("cid_cate",3)->where('idvoucher','=','3')->orderBy("id","ASC")->get()
+        ];
+        $data['voucher15M'] = [
+            "tivi15M"   =>Samsung::where("cid_cate",8)->where('idvoucher','=','4')->orderBy("id","ASC")->get(),
+            "tulanh15M" =>Samsung::where("cid_cate",18)->where('idvoucher','=','4')->orderBy("id","ASC")->get(),
+            "maygiat15M"=>Samsung::where("cid_cate",3)->where('idvoucher','=','4')->orderBy("id","ASC")->get()
+        ];
+        $data['voucher2M'] = [
+            "tivi2M"    =>Samsung::where("cid_cate",8)->where('idvoucher','=','5')->orderBy("id","ASC")->get(),
+            "tulanh2M"  =>Samsung::where("cid_cate",18)->where('idvoucher','=','5')->orderBy("id","ASC")->get(),
+            "maygiat2M" =>Samsung::where("cid_cate",3)->where('idvoucher','=','5')->orderBy("id","ASC")->get()
+        ];
+            return $this->sendApi($data,'List Product ');
+        
     }
     public function getcate(){
         $data = DTCate::get();
@@ -53,24 +56,41 @@ class ApiController extends BasicController
     
     public function getproductcate($alias,Request $request){
         $cate = DTCate::where('alias',$alias)->first();
-        if($cate->cid_parent == '0'){
-           
-            $parent = DTCate::where('cid_parent',$cate['id'])->where('status','1')->get();
-          
-            $product =array();
-            foreach ($parent as $cate) {
+        if(isset($cate)){
+            if($cate->cid_parent == '0'){
+               
+                $parent = DTCate::where('cid_parent',$cate['id'])->where('status','1')->get();
+              
+                $product =array();
+                foreach ($parent as $cate) {
 
-                $product[$cate['id']] = DTProduct::getProductCateParent($cate['id']);    
+                    $product[$cate['id']] = DTProduct::getProductCateParent($cate['id']);    
+                }
+                return $this->sendApi($product,'List Product Cate parent');
+                
+            }else{
+                $list = DTProduct::getProductCate($cate['id']);
+                return $this->sendApi($list,'List Product Cate');
             }
-           
-            
         }else{
-            $list = DTProduct::getProductCate($cate['id']);
+            return $this->sendError('Cate null');
         }
-        if(!empty($list)){
-            return $this->sendApi($list,'List Product Cate');
-        }else{
-            return $this->sendApi($product,'List Product Cate parent');
-        }
+        
     }
+    public function getsale(){
+
+        $list["didong"]=Sale::where("cid_cate",13)->orderBy("id","ASC")->get();
+        $list["tivi"]=Sale::where("cid_cate",8)->orderBy("id","ASC")->get();
+        $list["tulanh"]=Sale::where("cid_cate",18)->orderBy("id","ASC")->get();
+        $list["maygiat"]=Sale::where("cid_cate",3)->orderBy("id","ASC")->get();
+
+        $list["giadung"]=Sale::where("cid_cate",9)->get(); 
+        if(isset($list)){
+            return $this->sendApi($list,'List Product ');
+        }else{
+           return $this->sendError('List Product null'); 
+        }
+       
+    }
+   
 }

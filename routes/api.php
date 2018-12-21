@@ -37,4 +37,5 @@ Route::group(['namespace'=>'Api'],function(){
 	Route::get('/get-data','ApiController@getall');
 	Route::get('/get-cate','ApiController@getcate');
 	Route::get('/get-product-cate/{alias}','ApiController@getproductcate');
+	Route::get('/get-sale','ApiController@getsale');
 });

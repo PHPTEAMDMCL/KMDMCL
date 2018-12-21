@@ -65,7 +65,7 @@ class Product extends Model
 							    AND a.is_status_cate='1' AND a.status='1'  AND b.status='1'  AND b.cid_supplier='1' AND
 								a.cid_cate=$id
 					
-				  	ORDER BY  b.order_by DESC
+				  	ORDER BY  a.id DESC
 
 					LIMIT 8
 				";
@@ -201,7 +201,7 @@ class Product extends Model
 									ORDER BY f.is_type ASC
 								";
 
-								 $data_product=DB::connection("mysql2")->select($sql);
+								$data_product=DB::connection("mysql2")->select($sql);
 								
 				                if(!empty($data_product[0])){
 				                	foreach ($data_product as $value) {
@@ -220,7 +220,6 @@ class Product extends Model
 				                					"order"=> $value['name']
 				                				);
 				                	}
-				                	
 				                	
 				                		
 				                }
