@@ -46,6 +46,7 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/samsung-online','SamsungonlineController@index');
 		Route::get('/san-voucher-grab-reward','GrabController@index');
 		Route::get('/qua-tet-linh-dinh','GrabController@newyear');
+		Route::get('/gian-hang-online','OnlineController@index');
 	});
 
 });
@@ -115,6 +116,12 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("lists","QuatetController@lists");
 				Route::any("edit/{id}","QuatetController@edit");
 				Route::any("removed/{id}","QuatetController@removed");
+			});
+			Route::group(["prefix"=>"online"],function(){
+				Route::any("add","OnlineController@add");
+				Route::any("lists","OnlineController@lists");
+				Route::any("edit/{id}","OnlineController@edit");
+				Route::any("removed/{id}","OnlineController@removed");
 			});
  });
 Route::group(["prefix"=>"admin","namespace"=>"Amin","middleware"=>'auth'],function(){

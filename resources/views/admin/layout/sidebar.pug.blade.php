@@ -54,16 +54,15 @@
       //-       a.submenu(href='/admin/landing/add-live-child')
       //-         span.hidden-tablet Thêm chương trình con
       //-     li
-      //-       a.submenu(href='/admin/landing/list-active')
+      //-       a.submenu(href='/admin/landing/lít-active')
       //-         span.hidden-tablet Đang chạy
       //-     li
-      //-       a.submenu(href='/admin/landing/list-unactive')
+      //-       a.submenu(href='/admin/landing/lít-unactive')
       //-         span.hidden-tablet Ngưng đang chạy
       li
         a.dropmenu(href='#')
           i.icon-folder-close-alt
           span.hidden-tablet TechcomBank
-          
         ul
           li
             a.submenu(href='/admin/techcombank/add')
@@ -101,6 +100,17 @@
           li
             a.submenu(href='/admin/promotion/lists')
               span.hidden-tablet Danh sách khuyến mãi
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet Gian Hàng Online
+        ul
+          li
+            a.submenu(href='/admin/online/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/online/lists')
+              span.hidden-tablet Danh sách con hàng
 
       //- li
       //-   a(href='form.html')

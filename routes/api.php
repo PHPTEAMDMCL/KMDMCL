@@ -27,6 +27,7 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/grab-load','GrabController@loadapi');
 		Route::get('/qua-tet-load','GrabController@quatetloadapi');
 		Route::get('/get-data','GrabController@api');
+		Route::get('/online-load',"OnlineController@loadapi");
 	});
 });
 
@@ -38,4 +39,5 @@ Route::group(['namespace'=>'Api'],function(){
 	Route::get('/get-cate','ApiController@getcate');
 	Route::get('/get-product-cate/{alias}','ApiController@getproductcate');
 	Route::get('/get-sale','ApiController@getsale');
+	Route::get('/get-online','ApiController@getonline');
 });

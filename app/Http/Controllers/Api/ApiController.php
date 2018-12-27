@@ -11,6 +11,7 @@ use App\Http\Resources\Write\Samsung as SamsungResource;
 use App\Http\Resources\Read\Cate as CateResource;
 use App\Http\Controllers\Api\BasicController;
 use App\Model\Write\Y2018\SaleDecember as Sale;
+use App\Model\Write\Y2018\Online;
 use DB;
 
 class ApiController extends BasicController
@@ -91,6 +92,45 @@ class ApiController extends BasicController
            return $this->sendError('List Product null'); 
         }
        
+    }
+
+   
+    public function getonline(){
+        
+
+        $list=Online::whereIn('cid_cate', [8,3,18])->where('hot','1')->get();
+        
+        $data = '';
+        foreach ($list as $value) {
+            
+            if($value['percent']>0){
+                $percent ='<span class="iconpercent"><b>GIẢM</b> '.$value['percent'].'%</span> '  ;   
+            }else{
+                $percent ='';
+            }
+           
+            $data .='<div class="itempro">
+                <p class="list_product_top">
+                  <img src="/public/dienmaycholon/general/img/gia-soc-hom-nay.png" alt="online giá sốc">
+                </p>
+                <a class="img_pro" href="/'.$value['alias_cate'].'/'.$value['alias_product'].'" title="'.$value['name_product'].'" target="_blank">
+                  <img src="https://dienmaycholon.vn/public/picture/tmp/product_'.$value['cid_product'].'_220_220.jpg" alt="#">
+                   '.$percent.'
+                  <h3 class="info_name">'.$value['name_product'].'</h3>
+                </a>
+                <div class="info_price">
+                    <img src="/public/dienmaycholon/general/img/gia-online.png" alt="Giá online">
+                    <strong>'.number_format($value['discount']).' VNĐ</strong>
+                </div>
+                <div class="box_pro_info">
+                    <div class="box_muangay">
+                      <a class="add_muangay1" href="/gio-hang/'.$value['alias_product'].'" title="Mua ngay" target="_blank"></a>
+                    </div>
+                </div>
+            </div>';
+         }
+         echo $data;
+        return;
     }
    
 }
