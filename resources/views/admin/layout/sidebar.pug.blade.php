@@ -111,6 +111,17 @@
           li
             a.submenu(href='/admin/online/lists')
               span.hidden-tablet Danh sách con hàng
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet TIVI Tết
+        ul
+          li
+            a.submenu(href='/admin/tivi/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/tivi/lists')
+              span.hidden-tablet Danh sách con hàng
 
       //- li
       //-   a(href='form.html')

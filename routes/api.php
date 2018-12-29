@@ -28,6 +28,7 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/qua-tet-load','GrabController@quatetloadapi');
 		Route::get('/get-data','GrabController@api');
 		Route::get('/online-load',"OnlineController@loadapi");
+		Route::get('/tivi-load','TiviController@loadapi');
 	});
 });
 

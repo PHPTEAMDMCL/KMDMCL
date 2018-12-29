@@ -47,6 +47,7 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/san-voucher-grab-reward','GrabController@index');
 		Route::get('/qua-tet-linh-dinh','GrabController@newyear');
 		Route::get('/gian-hang-online','OnlineController@index');
+		Route::get('/tivi-tet','TiviController@index');
 	});
 
 });
@@ -122,6 +123,12 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("lists","OnlineController@lists");
 				Route::any("edit/{id}","OnlineController@edit");
 				Route::any("removed/{id}","OnlineController@removed");
+			});
+			Route::group(["prefix"=>"tivi"],function(){
+				Route::any("add","TiviController@add");
+				Route::any("lists","TiviController@lists");
+				Route::any("edit/{id}","TiviController@edit");
+				Route::any("removed/{id}","TiviController@removed");
 			});
  });
 Route::group(["prefix"=>"admin","namespace"=>"Amin","middleware"=>'auth'],function(){
