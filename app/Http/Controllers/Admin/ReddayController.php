@@ -110,7 +110,7 @@ class ReddayController extends Controller
           
             $this->View['data_list']=DTRedday::where("cid_product",$search_id)->orderBy("cid_cate","ASC")->paginate(20);
         }else{
-            $this->View['data_list']=DTRedday::orderBy("cid_cate","ASC")->paginate(20);
+            $this->View['data_list']=DTRedday::orderBy("cid_cate","ASC")->paginate(5);
         }
     	
         if($request->input("change_value")){

@@ -6,6 +6,10 @@
           i.icon-bar-chart
           span.hidden-tablet  Thông tin chung 
       li
+        a(href='/admin/promotion/index')
+          i.icon-flag
+          span.hidden-tablet  Tạo chương trình
+      li
         a.dropmenu(href='#')
           i.icon-folder-close-alt
           span.hidden-tablet Ngày rửa lửa 

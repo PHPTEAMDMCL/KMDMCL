@@ -17,6 +17,8 @@ Route::get('/', function () {
 	return redirect("https://dienmaycholon.vn");
     return view('welcome',['one'=>1,'two'=>'hello world']);
 });
+Route::get('/chuongtrinh/{tenchuongtrinh}', 'PromotionController@index');
+Route::any('/sendinforcustomer/{tenchuongtrinh}', 'PromotionController@sendinforcustomer');
 Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	Route::group(["prefix"=>"10"],function(){
 		Route::get('/test', "ProductController@test");
@@ -36,8 +38,6 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 			return view("v2018.m11.listnote9");
 		});
 		Route::get('/ngay-ruc-lua',"ReddayController@index");
-
-		
 	});
 	Route::group(["prefix"=>"12"],function(){
 		Route::get('/qua-tet-samsung',"BimatsamsungController@index");
@@ -52,16 +52,12 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 
 });
 Route::group(["namespace"=>"C2019"],function(){
-	//Route::group(["prefix"=>"01"],function(){
 		Route::get('/haloo', "IndexController@index");
 		Route::post("/posttest","ProductController@posttest");
-	//});
-
 });
 // FOR BACKEND
 
 Route::group(['namespace'=>"Auth"],function(){
-	
 	Route::get("/login",['as'=>'login','uses'=>"LoginController@login"]);
 	Route::post("/postlogin",['as'=>'postlogin','uses'=>"LoginController@postlogin"]);
 	Route::get('logout',function(){
@@ -111,6 +107,15 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("lists","PromotionController@lists");
 				Route::any("edit/{id}","PromotionController@edit");
 				Route::any("removed/{id}","PromotionController@removed");
+				Route::any("index","PromotionController@index");
+				Route::any("stepone","PromotionController@stepone");
+				Route::any("steptwo/{namelandingpage}","PromotionController@steptwo");
+				Route::any("stepthree/{namelandingpage}","PromotionController@stepthree");
+				Route::any("stepfinish/{namelandingpage}","PromotionController@stepfinish");
+				Route::any("updateaction","PromotionController@updateaction");
+				Route::any("updatefile/{namelandingpage}","PromotionController@updatefile");
+				Route::any("updateproduct/{namelandingpage}","PromotionController@updateproduct");
+				Route::any("updatepromotion","PromotionController@updatepromotion");
 			});
 			Route::group(["prefix"=>"quatet"],function(){
 				Route::any("add","QuatetController@add");
