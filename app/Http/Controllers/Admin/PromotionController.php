@@ -170,10 +170,10 @@ class PromotionController extends Controller
                 }
             }
             if (!empty($_file) and !empty($_file['tmp_name'])) {
-                $pathIn = PATH_PUBLIC.'/../resources/views/v2019/';
+                $pathIn         = PATH_PUBLIC.'/resources/views/v2019/';
                 $tempFile       = $_file['tmp_name'];
                 $tenchuongtrinh = $request->input("namelandingpage");
-                $dir = $pathIn.$tenchuongtrinh;
+                $dir            = $pathIn.$tenchuongtrinh;
                 if(!file_exists($dir)){
                     mkdir($dir, 0777,true);
                 }
@@ -290,7 +290,7 @@ class PromotionController extends Controller
                 }
             }
             if (!empty($_file) and !empty($_file['tmp_name'])) {
-                $pathIn = PATH_PUBLIC.'/../resources/views/v2019/';
+                $pathIn = PATH_PUBLIC.'/resources/views/v2019/';
                 $tempFile       = $_file['tmp_name'];
                 $tenchuongtrinh = $request->input("namelandingpage");
                 $dir = $pathIn.$tenchuongtrinh;
@@ -316,12 +316,11 @@ class PromotionController extends Controller
     public function steptwo(Request $request,$namelandingpage)
     {
         $this->View['tenchuongtrinh'] = $tenchuongtrinh = $namelandingpage;
-        $pathIn = PATH_PUBLIC.'/../resources/views/v2019/';
+        $pathIn = PATH_PUBLIC.'/resources/views/v2019/';
         $cv_name  = "buffer.pug.blade.php";
         $_string = file_get_contents($pathIn.$tenchuongtrinh."/".$cv_name);
         $data = array();
-        $data['number_cate'] = substr_count($_string, "#KMDANHMUCSANPHAM");
-        $data['number_listproduct'] = substr_count($_string, "#KMLISTSANPHAM");
+        $data['number_cate'] = $sodanhmuccha = substr_count($_string, "#KMDANHMUCSANPHAM");
         if($request->isMethod("post"))
         {
             DTPromotion::xoaBuocHai($tenchuongtrinh);
@@ -330,18 +329,32 @@ class PromotionController extends Controller
             {
                 DTPromotion::updateMenuPromotion($tenchuongtrinh,$menu);
             }
-
-            for ($i=0; $i <$data['number_cate'] ; $i++) { 
-                $tendanhmuc         = $request->input("tendanhmuc".$i);
-                $templatedanhmuc    = (!empty($request->input("templatedanhmucrieng".$i)))?$request->input("templatedanhmucrieng".$i):$request->input("templatedanhmuc");
-                $cid_cate           = $request->input("cid_cate".$i);
-                // $menu               = $request->input("templatetagdanhmuc");
-                DTPromotion::themDanhMucChuongTrinh($tenchuongtrinh,$tendanhmuc,$templatedanhmuc,$cid_cate);
-            }
-            for ($i=0; $i <$data['number_listproduct'] ; $i++) { 
-                $danhsachsanpham         = $request->input("danhsachsanpham".$i);
-                $templatesanphamrieng    = (!empty($request->input("templatesanphamrieng".$i)))?$request->input("templatesanphamrieng".$i):$request->input("templatesanpham");
-                DTPromotion::themSanPhamChuongTrinh($tenchuongtrinh,$danhsachsanpham,$templatesanphamrieng);
+            for ($i=1; $i <= $sodanhmuccha ; $i++) 
+            { 
+                $tendanhmuc                 = $request->input("tendanhmuc".$i);
+                $cid_cate                   = $request->input("cid_cate".$i);
+                $templatedanhmucrieng       = (!empty($request->input("templatedanhmucrieng".$i)))?$request->input("templatedanhmucrieng".$i):$request->input("templatechungdanhmuccha");
+                $templatechungdanhmuccon    = $request->input("templatechungdanhmuccon".$i);
+                $codedanhmuc                = MrData::toAlias2($tendanhmuc);
+                DTPromotion::themDanhMucChuongTrinh($tenchuongtrinh,$tendanhmuc,$templatedanhmucrieng,$cid_cate,$codedanhmuc);
+                $sodanhmuccon   = $request->input("Tong_danhmuccon".$i);
+                for ($j=1; $j <= $sodanhmuccon; $j++) { 
+                    $tendanhmuccon  = $request->input("tendanhmuccon".$i.$j);
+                    $madanhmuccon   = $request->input("madanhmuccon".$i.$j);
+                    $codedanhmuccon = MrData::toAlias2($tendanhmuccon);
+                    $templatedanhmuccon       = (!empty($request->input("templatedanhmucrieng".$i.$j)))?$request->input("templateriengdanhmuccon".$i.$j):$request->input("templatechungdanhmuccon".$i);
+                    DTPromotion::themDanhMucCon($codedanhmuccon,$tenchuongtrinh,$madanhmuccon,$codedanhmuc,$tendanhmuccon,$templatedanhmuccon);
+                    $sosanpham   = $request->input("Tong_sanpham".$i.$j);
+                    for ($k=1; $k <= $sosanpham; $k++) 
+                    { 
+                        $tensanpham             = $request->input("tensanpham".$i.$j.$k);
+                        $masanpham              = $request->input("masanpham".$i.$j.$k);
+                        $giakhuyenmaisanpham    = $request->input("giakhuyenmaisanpham".$i.$j.$k);
+                        $ghichusanpham          = $request->input("ghichusanpham".$i.$j.$k);
+                        $templateriengsanpham       = (!empty($request->input("templatedanhmucrieng".$i.$j.$k)))?$request->input("templateriengsanpham".$i.$j.$k):$request->input("templatechungsanpham".$i.$j);
+                        DTPromotion::themChiTietSanPham($tenchuongtrinh,$masanpham,$codedanhmuccon,$tensanpham,$ghichusanpham,$giakhuyenmaisanpham,$templateriengsanpham);
+                    }
+                }
             }
             return redirect('/admin/promotion/stepthree/'.$tenchuongtrinh);
         }
@@ -354,29 +367,32 @@ class PromotionController extends Controller
         $this->View['tenchuongtrinh'] = $tenchuongtrinh = $namelandingpage;
         if($request->isMethod("post"))
         {
-            DTPromotion::xoaBuocBa($tenchuongtrinh);
-            $_products  = $request->input("cid_product");
+            //DTPromotion::xoaBuocBa($tenchuongtrinh);
+            $_products  = $request->input("id");
             $_name      = $request->input("name");
             $_discount  = $request->input("discount");
             $_price     = $request->input("price");
             $_image     = $request->input("image");
             $_link_pro  = $request->input("link_pro");
-            $_promo     = $request->input("promo");
             $_attribute = $request->input("attribute");
+            $_phantram = $request->input("phantram");
             $number     = 0;
-            if(count($_products)>0)
+            if(!empty($_products))
             {
-                foreach ($_products as $data) {
-                    $cid_product  = $data;
-                    $name         = $_name[$number];
-                    $discount     = $_discount[$number];
-                    $price        = $_price[$number];
-                    $image        = $_image[$number];
-                    $link_pro     = $_link_pro[$number];
-                    $promo        = $_promo[$number];
-                    $attribute    = $_attribute[$number];
-                    DTPromotion::themChiTietSanPham($tenchuongtrinh,$cid_product,$name,$discount,$price,$image,$link_pro,$promo,$attribute);
-                    $number++;
+                if(count($_products)>0)
+                {
+                    foreach ($_products as $data) {
+                        $id           = $data;
+                        $name         = $_name[$number];
+                        $discount     = $_discount[$number];
+                        $price        = $_price[$number];
+                        $image        = $_image[$number];
+                        $link_pro     = $_link_pro[$number];
+                        $phantram     = $_phantram[$number];
+                        $attribute    = $_attribute[$number];
+                        DTPromotion::capNhatChiTietSanPham($tenchuongtrinh,$id,$name,$discount,$price,$image,$link_pro,$phantram,$attribute);
+                        $number++;
+                    }
                 }
             }
             return redirect('/admin/promotion/stepfinish/'.$tenchuongtrinh);
@@ -389,50 +405,42 @@ class PromotionController extends Controller
             foreach ($list_product  as $value) 
             {
                 $id             = $value->id;
-                $_array_product = explode(",",$value->sap_code);
-                $_list_product  = "";
-                if(count($_array_product)>0)
+                $idproduct      = $value->sap_code;
+                $giachuongtrinh = $value->price;
+                if($giachuongtrinh)
                 {
-                    //$data[$id]['lissanpham']    = $value-> 
-                    foreach ($_array_product as $product) {
-                        $product                = explode("--",$product);
-                        $idproduct              = $product[0];
-                        $giachuongtrinh         = $product[1];
-                        if($giachuongtrinh)
-                        {
-                            $giachuongtrinh     = number_format($giachuongtrinh,0,".",".")." Đ";
-                        }
-                        $note         = $product[2];
-                        $product_info = DTPromotion::layThongTinSanPham($idproduct)[0];
-                        //lay attribute 
-                        $attribute    = DTPromotion::getAttributeProduct($product_info->myid);
-                        $_attribute    = '';
-                        if(count($attribute)>0)
-                        {
-                            foreach ($attribute as $value) 
-                            {
-                                $_attribute .= $value->val . '--';
-                            }
-                            $_attribute = substr($_attribute, 0, -2);
-                        }
-                        $attribute    = $attribute[0]->val;
-                        $name_pro     = $product_info->name;
-                        $price_pro    = $product_info->discount;
-                        $price_pro    = number_format($price_pro,0,".",".")." Đ";
-                        $img_pro      = "https://static.dienmaycholon.vn/tmp/product_".$product_info->myid."_220_220.jpg";
-                        $link_pro     = "https://dienmaycholon.vn/".MrData::toAlias2($product_info->namecate).'/'.MrData::toAlias2($product_info->name);
-                        $_data['cid_product']       = $id;
-                        $_data['attribute']         = $attribute;
-                        $_data['name']              = $name_pro;
-                        $_data['discount']          = $price_pro;
-                        $_data['image']             = $img_pro;
-                        $_data['link_pro']          = $link_pro;
-                        $_data['promo']             = $product[2];
-                        $_data['price']             = $giachuongtrinh;
-                        $_data['attribute']         = $_attribute;
-                        $data[$id][]                = $_data;
-                    }
+                    $giachuongtrinh     = number_format($giachuongtrinh,0,".",".")." Đ";
                 }
+                $note         = (!empty($product[2]))?$product[2]:'';
+                $product_info = DTPromotion::layThongTinSanPham($idproduct)[0];
+                //lay attribute 
+                $attribute    = DTPromotion::getAttributeProduct($product_info->myid);
+                $_attribute    = '';
+                if(count($attribute)>0)
+                {
+                    foreach ($attribute as $valuea) 
+                    {
+                        $_attribute .= $valuea->val . '--';
+                    }
+                    $_attribute = substr($_attribute, 0, -2);
+                }
+                $attribute    = $attribute[0]->val;
+                $name_pro     = $product_info->name;
+                $price_pro    = $product_info->discount;
+                $price_pro    = number_format($price_pro,0,".",".")." Đ";
+                $img_pro      = "https://static.dienmaycholon.vn/tmp/product_".$product_info->myid."_220_220.jpg";
+                $link_pro     = "https://dienmaycholon.vn/".MrData::toAlias2($product_info->namecate).'/'.MrData::toAlias2($product_info->name);
+                $_data['id']                    = $id;
+                $_data['attribute']             = $attribute;
+                $_data['name']                  = $name_pro;
+                $_data['discount']              = $price_pro;
+                $_data['image']                 = $img_pro;
+                $_data['link_pro']              = $link_pro;
+                $_data['price']                 = $giachuongtrinh;
+                $_data['attribute']             = $_attribute;
+                $_giahientai                    = (!empty($value->price))?$value->price:$product_info->discount;
+                $_data['phantram']              = round($product_info->saleprice - $_giahientai/$product_info->saleprice*100);
+                $data[$value->cid_catechild][]  = $_data;
             }
         }
         $this->View['data'] = $data;
@@ -546,8 +554,25 @@ class PromotionController extends Controller
                     }
                 }
             }
+            if(count($_FILES['fuFileFonts']['tmp_name'])>0)
+            {
+                $dir = $pathIn.$tenchuongtrinh.'/fonts/';
+                if(!file_exists($dir)){
+                    mkdir($dir, 0777,true);
+                }
+                chmod($dir, 0777);
+                for($i=0;$i<count($_FILES['fuFileFonts']['tmp_name']);$i++)
+                {
+                    $tempFile = $_FILES['fuFileFonts']['tmp_name'][$i];
+                    if (!empty($tempFile))
+                    {
+                        $cv_name        = $_FILES['fuFileFonts']['name'][$i];
+                        move_uploaded_file($tempFile,$dir.$cv_name);
+                    }
+                }
+            }
             if (!empty($_file) and !empty($_file['tmp_name'])) {
-                $pathIn = PATH_PUBLIC.'/../resources/views/v2019/';
+                $pathIn = PATH_PUBLIC.'/resources/views/v2019/';
                 $cv_name        = "buffer.pug.blade.php";
                 $tempFile       = $_file['tmp_name'];
                 $dir = $pathIn.$tenchuongtrinh;
@@ -573,7 +598,7 @@ class PromotionController extends Controller
 
     public function updateproduct(Request $request,$namelandingpage){
         $this->View['tenchuongtrinh'] = $tenchuongtrinh = $namelandingpage;
-        $pathIn = PATH_PUBLIC.'/../resources/views/v2019/';
+        $pathIn = PATH_PUBLIC.'/resources/views/v2019/';
         $cv_name  = "buffer.pug.blade.php";
         $_string = file_get_contents($pathIn.$tenchuongtrinh."/".$cv_name);
         $data = array();
@@ -605,60 +630,69 @@ class PromotionController extends Controller
 
     public function updatepromotion(Request $request)
     {
-        $this->taoChuongTrinh($tenchuongtrinh);
+        if($request->isMethod("post"))
+        {
+            $tenchuongtrinh = $request->input("namelandingpage");
+            $this->taoChuongTrinh($tenchuongtrinh);
+        }
     }
 
     public function taoChuongTrinh($tenchuongtrinh)
     {
-        $pathIn             = PATH_PUBLIC.'/../resources/views/v2019/';
+        $pathIn             = PATH_PUBLIC.'/resources/views/v2019/';
         $cv_name            = "buffer.pug.blade.php";
         $list_cate          = DTPromotion::getDanhMucChuongTrinh($tenchuongtrinh);
-        $list_product       = DTPromotion::getSanPhamChuongTrinh($tenchuongtrinh);
         $_string            = file_get_contents($pathIn.$tenchuongtrinh."/".$cv_name);
         $number_cate        = 1;
         $promotion          = DTPromotion::getPromotion($tenchuongtrinh);
         $_menu_categories   = '';
+        $_string_cateparent = '';
         if(count($list_cate)>0)
         {
             $menu_categories        = $promotion[0]->menu_categories; 
+            $number_categories      = 1;
             foreach ($list_cate as $value) {
-                $cate1              = $value->content;
-                $_string            = str_replace("#KMDANHMUCSANPHAM".$number_cate,$cate1,$_string);
-                $_string1           = $menu_categories;
-                $_string1           = str_replace("#KMDMTENSANPHAM",$value->name,$_string1);
-                $_menu_categories   .= $_string1 . " \n";
+                $_string_cateparent .= $value->content;
+                $list_catechild     = DTPromotion::getDanhMucCon($value->code);
+                $string_catechild  = '';
+                foreach ($list_catechild as $_catechild) {
+                    $_string_catechild = $_catechild->layout;
+                    $_string1           = $menu_categories;
+                    $_string1           = str_replace("#KMTENDANHMUC",$_catechild->name,$_string1);
+                    $_string1           = str_replace("#KMDMID",$_catechild->cid_child,$_string1);
+                    $_menu_categories   .= $_string1 . " \n";
+                    $_string_catechild = str_replace("#KMDMID",$_catechild->cid_child,$_string_catechild);
+                    $list_product     = DTPromotion::getSanPhamDanhMuc($_catechild->code);
+                    $_string_product  = '';
+                    foreach ($list_product as $product) {
+                        $_row_product   = $product->layout;
+                        $link_pro       = $product->link;
+                        $name_pro       = $product->name;
+                        $price_pro      = $product->discount;
+                        $img_pro        = $product->image;
+                        $attribute      = $product->attribute;
+                        $note           = $product->promo;
+                        $giachuongtrinh = $product->price;
+                        $phantram       = $product->phan_tram;
+                        $_row_product   = str_replace("#KMLINKSANPHAM",$link_pro,$_row_product);
+                        $_row_product   = str_replace("#KMTENSANPHAM",$name_pro,$_row_product);
+                        $_row_product   = str_replace("#KMGIASANPHAM",$price_pro,$_row_product);
+                        $_row_product   = str_replace("#KMGIAKHUYENMAI",$giachuongtrinh,$_row_product);
+                        $_row_product   = str_replace("#KMHINHSANPHAM",$img_pro,$_row_product);
+                        $_row_product   = str_replace("#KMTHUOCTINH",$attribute,$_row_product);
+                        $_row_product   = str_replace("#KMNOTESANPHAM",$note,$_row_product);
+                        $_row_product   = str_replace("#KMPHANTRAMGIAM",$phantram,$_row_product);
+                        $_row_product   = str_replace("#KMDMCLGIAKHUYENMAI",$giachuongtrinh,$_row_product);
+                        $_string_product .= $_row_product. " \n"; 
+                    }
+                    $_string_catechild = str_replace("#KMLISTSANPHAM",$_string_product,$_string_catechild);
+                    $string_catechild .= $_string_catechild. " \n"; 
+                }
+                $_string_cateparent = str_replace("#KMLISTDANHMUCCON",$string_catechild,$_string_cateparent);
+                $_string = str_replace("#KMDANHMUCCHA".$number_cate,$_string_cateparent,$_string);
                 $number_cate++;
             }
             $_string = str_replace("#MENUCATEKMDMCL",$_menu_categories,$_string);
-        }
-        if(count($list_product)>0)
-        {
-            $number_pro   = 1;
-            foreach ($list_product  as $value) 
-            {
-                $_list_product        = "";
-                $_array_product       = DTPromotion::getChiTietSanPhamChuongTrinh($value->id);
-                foreach ($_array_product as $product) {
-                    $_row_product   = $value->note;
-                    $link_pro       = $product->link;
-                    $name_pro       = $product->name;
-                    $price_pro      = $product->discount;
-                    $img_pro        = $product->image;
-                    $attribute      = $product->attribute;
-                    $note           = $product->promo;
-                    $giachuongtrinh = $product->price;
-                    $_row_product   = str_replace("#KMDMCLLINKSANPHAM",$link_pro,$_row_product);
-                    $_row_product   = str_replace("#KMDMCLTENSANPHAM",$name_pro,$_row_product);
-                    $_row_product   = str_replace("#KMDMCLGIASANPHAM",$price_pro,$_row_product);
-                    $_row_product   = str_replace("#KMDMCLHINHSANPHAM",$img_pro,$_row_product);
-                    $_row_product   = str_replace("#KMDMCLTHUOCTINH",$attribute,$_row_product);
-                    $_row_product   = str_replace("#KMDMCLKHUYENMAI",$note,$_row_product);
-                    $_row_product   = str_replace("#KMDMCLGIAKHUYENMAI",$giachuongtrinh,$_row_product);
-                    $_list_product .= $_row_product . " \n";
-                }
-                $_string = str_replace("#KMLISTSANPHAM".$number_pro,$_list_product,$_string);
-                $number_pro++;
-            }
         }
         $_string = str_replace("#kmxuonghang","",$_string);
         $_string = str_replace("\"css/","\"".BASE_URL."y2019/".$tenchuongtrinh."/css/",$_string);
@@ -671,5 +705,71 @@ class PromotionController extends Controller
         $myfile = fopen($pathIn.$tenchuongtrinh."/".$file_name, "wb") or die("Unable to open file!");
         fwrite($myfile, $_string);
         fclose($myfile);
+        die();
     }
+
+    // public function taoChuongTrinh($tenchuongtrinh)
+    // {
+    //     $pathIn             = PATH_PUBLIC.'/resources/views/v2019/';
+    //     $cv_name            = "buffer.pug.blade.php";
+    //     $list_cate          = DTPromotion::getDanhMucChuongTrinh($tenchuongtrinh);
+    //     $list_product       = DTPromotion::getSanPhamChuongTrinh($tenchuongtrinh);
+    //     $_string            = file_get_contents($pathIn.$tenchuongtrinh."/".$cv_name);
+    //     $number_cate        = 1;
+    //     $promotion          = DTPromotion::getPromotion($tenchuongtrinh);
+    //     $_menu_categories   = '';
+    //     if(count($list_cate)>0)
+    //     {
+    //         $menu_categories        = $promotion[0]->menu_categories; 
+    //         foreach ($list_cate as $value) {
+    //             $cate1              = $value->content;
+    //             $_string            = str_replace("#KMDANHMUCSANPHAM".$number_cate,$cate1,$_string);
+    //             $_string1           = $menu_categories;
+    //             $_string1           = str_replace("#KMDMTENSANPHAM",$value->name,$_string1);
+    //             $_menu_categories   .= $_string1 . " \n";
+    //             $number_cate++;
+    //         }
+    //         $_string = str_replace("#MENUCATEKMDMCL",$_menu_categories,$_string);
+    //     }
+    //     if(count($list_product)>0)
+    //     {
+    //         $number_pro   = 1;
+    //         foreach ($list_product  as $value) 
+    //         {
+    //             $_list_product        = "";
+    //             $_array_product       = DTPromotion::getChiTietSanPhamChuongTrinh($value->id);
+    //             foreach ($_array_product as $product) {
+    //                 $_row_product   = $value->note;
+    //                 $link_pro       = $product->link;
+    //                 $name_pro       = $product->name;
+    //                 $price_pro      = $product->discount;
+    //                 $img_pro        = $product->image;
+    //                 $attribute      = $product->attribute;
+    //                 $note           = $product->promo;
+    //                 $giachuongtrinh = $product->price;
+    //                 $_row_product   = str_replace("#KMDMCLLINKSANPHAM",$link_pro,$_row_product);
+    //                 $_row_product   = str_replace("#KMDMCLTENSANPHAM",$name_pro,$_row_product);
+    //                 $_row_product   = str_replace("#KMDMCLGIASANPHAM",$price_pro,$_row_product);
+    //                 $_row_product   = str_replace("#KMDMCLHINHSANPHAM",$img_pro,$_row_product);
+    //                 $_row_product   = str_replace("#KMDMCLTHUOCTINH",$attribute,$_row_product);
+    //                 $_row_product   = str_replace("#KMDMCLKHUYENMAI",$note,$_row_product);
+    //                 $_row_product   = str_replace("#KMDMCLGIAKHUYENMAI",$giachuongtrinh,$_row_product);
+    //                 $_list_product .= $_row_product . " \n";
+    //             }
+    //             $_string = str_replace("#KMLISTSANPHAM".$number_pro,$_list_product,$_string);
+    //             $number_pro++;
+    //         }
+    //     }
+    //     $_string = str_replace("#kmxuonghang","",$_string);
+    //     $_string = str_replace("\"css/","\"".BASE_URL."y2019/".$tenchuongtrinh."/css/",$_string);
+    //     $_string = str_replace("\"js/","\"".BASE_URL."y2019/".$tenchuongtrinh."/js/",$_string);
+    //     $_string = str_replace("\"img/","\"".BASE_URL."y2019/".$tenchuongtrinh."/img/",$_string);
+    //     $_string = str_replace("'css/","'".BASE_URL."y2019/".$tenchuongtrinh."/css/",$_string);
+    //     $_string = str_replace("'js/","'".BASE_URL."y2019/".$tenchuongtrinh."/js/",$_string);
+    //     $_string = str_replace("'img/","'".BASE_URL."y2019/".$tenchuongtrinh."/img/",$_string);
+    //     $file_name        = "index.pug.blade.php";
+    //     $myfile = fopen($pathIn.$tenchuongtrinh."/".$file_name, "wb") or die("Unable to open file!");
+    //     fwrite($myfile, $_string);
+    //     fclose($myfile);
+    // }
 }

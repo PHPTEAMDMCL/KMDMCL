@@ -38,10 +38,24 @@ class Promotion extends Model
         return $result;
     }
 
+    protected static function getDanhMucCon($code)
+    {
+        $_sql_promo = "SELECT * FROM catechild WHERE cid_categories like '".$code."' ORDER BY id ASC";
+        $result = DB::connection("mysql")->select($_sql_promo);
+        return $result;
+    }
+
     protected static function getSanPhamChuongTrinh($tenchuongtrinh)
     {
-        $_sql_promo = "SELECT * FROM product WHERE name_promotion like '".$tenchuongtrinh."' ORDER BY id ASC";
+        $_sql_promo = "SELECT * FROM product_detail WHERE name_promotion like '".$tenchuongtrinh."' ORDER BY id ASC";
         $result = DB::connection("mysql")->select($_sql_promo);
+        return $result;
+    }
+
+    protected static function getSanPhamDanhMuc($code)
+    {
+        $_sql_product = "SELECT * FROM product_detail WHERE cid_catechild like '".$code."' ORDER BY id ASC";
+        $result = DB::connection("mysql")->select($_sql_product);
         return $result;
     }
 
@@ -63,30 +77,39 @@ class Promotion extends Model
         }
     }
 
-    protected static function themDanhMucChuongTrinh($name_promotion,$name,$content,$cid_cate)
+    protected static function themDanhMucChuongTrinh($name_promotion,$name,$content,$cid_cate,$code)
     {
         $cid_cate = (!empty($cid_cate))? $cid_cate : 0;
-        $_sql_promo = "INSERT INTO categories (name_promotion, name, cid_cate, content) VALUES ('".$name_promotion."','".$name."',".$cid_cate.",'".$content."')";
+        $_sql_promo = "INSERT INTO categories (name_promotion, name, cid_cate, content, code) VALUES ('".$name_promotion."','".$name."',".$cid_cate.",'".$content."','".$code."')";
         $result = DB::connection("mysql")->insert($_sql_promo);
     }
 
-    protected static function themSanPhamChuongTrinh($name_promotion,$sap_code,$note)
+    protected static function themDanhMucCon($code,$name_promotion,$cid_child,$cid_categories,$name,$layout)
     {
-        $_sql_promo = "INSERT INTO product (name_promotion, sap_code, note) VALUES ('".$name_promotion."','".$sap_code."','".$note."')";
+        $_sql_promo = "INSERT INTO catechild (code, name_promotion, cid_child, cid_categories, name, layout) VALUES ('".$code."','".$name_promotion."','".$cid_child."','".$cid_categories."','".$name."','".$layout."')";
         $result = DB::connection("mysql")->insert($_sql_promo);
     }
 
-    protected static function themChiTietSanPham($name_promotion,$cid_product,$name='',$discount=0,$price=0,$image='',$link_pro='',$promo='',$attribute='')
+    protected static function themChiTietSanPham($name_promotion,$sap_code,$cid_catechild='',$name='',$promo='',$price=0,$layout='',$attribute='',$discount=0,$image='',$link_pro='')
     {
-        $_sql_promo = "INSERT INTO product_detail (name_promotion, cid_product, name, discount, price, image, link, attribute, promo) VALUES ('".$name_promotion."','".$cid_product."','".$name."','".$discount."','".$price."','".$image."','".$link_pro."','".$attribute."','".$promo."')";
+        $_sql_promo = "INSERT INTO product_detail (name_promotion, sap_code, name, discount, price, image, link, attribute, promo, cid_catechild, layout) VALUES ('".$name_promotion."','".$sap_code."','".$name."','".$discount."','".$price."','".$image."','".$link_pro."','".$attribute."','".$promo."','".$cid_catechild."','".$layout."')";
         $result = DB::connection("mysql")->insert($_sql_promo);
+    }
+
+    protected static function capNhatChiTietSanPham($name_promotion,$id,$name='',$discount=0,$price=0,$image='',$link_pro='',$phantram=0,$attribute='')
+    {
+        $_capnhat_sanpham = "UPDATE product_detail SET name = '".$name."', discount = '".$discount."', price = '".$price."', image = '".$image."', link = '".$link_pro."', phan_tram = '".$phantram."', attribute = '".$attribute."' WHERE id like '".$id."'";
+        header('Content-Type: text/html; charset=UTF-8');
+        $result = DB::connection("mysql")->update($_capnhat_sanpham);
     }
 
     protected static function xoaBuocHai($name_promotion)
     {
-        $_sql_product = "DELETE FROM product WHERE name_promotion like '".$name_promotion."'";
+        $_sql_product   = "DELETE FROM product_detail WHERE name_promotion like '".$name_promotion."'";
         $result = DB::connection("mysql")->delete($_sql_product);
-        $_sql_cate = "DELETE FROM categories WHERE name_promotion like '".$name_promotion."'";
+        $_sql_catechild = "DELETE FROM catechild WHERE name_promotion like '".$name_promotion."'";
+        $result = DB::connection("mysql")->delete($_sql_catechild);
+        $_sql_cate      = "DELETE FROM categories WHERE name_promotion like '".$name_promotion."'";
         $result = DB::connection("mysql")->delete($_sql_cate);
     }
 
@@ -151,5 +174,12 @@ class Promotion extends Model
         $_select_promo="SELECT val FROM aa_comp_attr WHERE cid_product=$id LIMIT 0,2";
         $result = DB::connection("mysql2")->select($_select_promo);
         return $result;
+    }
+
+    protected static function checkChuongTrinh($name_promotion)
+    {
+        $_sql_promo = "SELECT id FROM promotion WHERE action = 1 and date_time >= '".date("Y-m-d H:i:s")."' and name_promo like '".$name_promotion."' ORDER BY id DESC";
+        $result = DB::connection("mysql")->select($_sql_promo);
+        return count($result);
     }
 }

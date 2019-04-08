@@ -61,6 +61,10 @@
 					  <label class="control-label">file hình : </label>
 					  <input type="file" name="fuFileImage[]" id="fuFileImage" class="input-file uniform_on" webkitdirectory directory multiple>
 				  	</div>
+				  	<div class="control-group">
+					  <label class="control-label">file fonts : </label>
+					  <input type="file" name="fuFileFonts[]" id="fuFileFonts" class="input-file uniform_on" webkitdirectory directory multiple>
+				  	</div>
 				  	<div class="form-actions">
 					  <button type="submit" class="btn btn-primary">Cập nhật</button>
 					</div>

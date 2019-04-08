@@ -16,6 +16,7 @@ class OnlineController extends AppController
         $this->View["maygiat"]=Online::where("cid_cate",3)->orderBy("id","ACS")->paginate(12);
         $this->View["giadung"]=Online::where("cid_cate",9)->orderBy("id","ACS")->paginate(12);
         $this->View["loa"]=Online::where("cid_cate",28)->orderBy("id","ACS")->paginate(12);
+        $this->View["maylanh"]=Online::where("cid_cate",32)->orderBy("id","ACS")->paginate(12);
 
     	return view("v2018.m12.online",$this->View);
     }

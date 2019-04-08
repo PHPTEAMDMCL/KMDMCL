@@ -47,12 +47,6 @@
             <a class="btn btn-success" title="Cập nhật file" href="/admin/promotion/updatefile/<?php echo $data->name_promo;?>">
               <i class="icon-print"></i>  
             </a>
-            <a class="btn btn-info" title="Cập nhật danh mục và sản phẩm" href="/admin/promotion/updateproduct/<?php echo $data->name_promo;?>">
-              <i class="icon-cogs"></i>  
-            </a>
-            <a class="btn btn-warning" title="Cập nhật chi tiết sản phẩm" href="/admin/promotion/stepthree/<?php echo $data->name_promo;?>">
-              <i class="icon-edit"></i>  
-            </a>
             <a class="btn btn-danger" onclick="updatepromotion('<?php echo $data->name_promo;?>')" title="Cập nhật số tiền sản phẩm" href="#">
               <i class="icon-money"></i> 
             </a>

@@ -23,7 +23,15 @@ class PromotionController extends Controller
     public function index($tenchuongtrinh)
     {
         $this->View["tenchuongtrinh"] = $tenchuongtrinh;
-        return view("v2019.".$tenchuongtrinh.".index",$this->View);
+        $check        = DTPromotion::checkChuongTrinh($tenchuongtrinh);
+        if($check>0)
+        {
+            return view("v2019.".$tenchuongtrinh.".index",$this->View);
+        }
+        else
+        {
+            return view("v2019.chuongtrinhketthuc",$this->View);
+        }
     }
     public function sendinforcustomer(Request $request,$tenchuongtrinh)
     {
