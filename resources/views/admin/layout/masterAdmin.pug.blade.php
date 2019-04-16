@@ -30,7 +30,6 @@ html(lang='en')
           | © 2018 
           a(href='/', alt='ĐIỆN MÁY CHỢ LỚN ') ĐIỆN MÁY CHỢ LỚN 
     script(src=asset( '/admin/js/jquery-1.9.1.min.js')  )
-
     script(src=asset('/admin/js/jquery-migrate-1.0.0.min.js' ) )
     script(src=asset('/admin/js/jquery-ui-1.10.0.custom.min.js') )
     script(src=asset('/admin/js/jquery.ui.touch-punch.js') )

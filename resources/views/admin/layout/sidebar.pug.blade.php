@@ -12,6 +12,42 @@
       li
         a.dropmenu(href='#')
           i.icon-folder-close-alt
+          span.hidden-tablet Chương trình khuyến mãi 
+          
+        ul
+          li
+            a.submenu(href='/admin/chuongtrinhkhuyenmai/themmoi')
+              span.hidden-tablet Thêm mới chương trình
+          li
+            a.submenu(href='/admin/chuongtrinhkhuyenmai/danhsach')
+              span.hidden-tablet Danh sách con hàng của chương trình   
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet Ưu đãi ABC
+          
+        ul
+          li
+            a.submenu(href='/admin/uudaiacb/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/uudaiacb/lists')
+              span.hidden-tablet Danh sách con hàng  
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
+          span.hidden-tablet Samsung tháng 4 
+          
+        ul
+          li
+            a.submenu(href='/admin/samsungfour/add')
+              span.hidden-tablet Thêm mới 
+          li
+            a.submenu(href='/admin/samsungfour/lists')
+              span.hidden-tablet Danh sách con hàng    
+      li
+        a.dropmenu(href='#')
+          i.icon-folder-close-alt
           span.hidden-tablet Ngày rửa lửa 
           
         ul

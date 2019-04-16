@@ -33,6 +33,14 @@ class PromotionController extends Controller
             return view("v2019.chuongtrinhketthuc",$this->View);
         }
     }
+
+    public function chuongtrinhdacbiet($tenchuongtrinh)
+    {
+        $this->View["tenchuongtrinh"] = $tenchuongtrinh;
+        $this->View["danhsachsanpham"] = DTPromotion::getSanphamChuongTrinhDacBietNew($tenchuongtrinh);
+        return view("v2019.".$tenchuongtrinh.".index",$this->View);
+    }
+
     public function sendinforcustomer(Request $request,$tenchuongtrinh)
     {
         if($request->isMethod("post"))

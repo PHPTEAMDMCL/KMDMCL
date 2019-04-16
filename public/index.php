@@ -8,7 +8,11 @@
  */
 
 define('LARAVEL_START', microtime(true));
-
+define('PATH_PUBLIC',__DIR__ ."/..");
+define('PATH_HTML',__DIR__ ."/");
+$base = isset($_SERVER["HTTPS"]) ? (($_SERVER["HTTPS"] === "on") ? "https://" : "http://") : "http://" . $_SERVER["SERVER_NAME"].'/';
+define('BASE_URL', $base);
+define('WEB_URL', BASE_URL."public/");
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

@@ -232,7 +232,7 @@ class PromotionController extends Controller
             $note           = $request->input("note");
             DTPromotion::themChuongTrinhKhuyenMai($tenchuongtrinh,$date_time,$note);
             $_file = (!empty($_FILES['fuFileAttach'])) ? $_FILES['fuFileAttach'] : "";
-            $pathIn = PATH_PUBLIC.'/y2019/';
+            $pathIn = PATH_HTML.'/y2019/';
             $dir = $pathIn.$tenchuongtrinh;
             if(!file_exists($dir)){
                 mkdir($dir, 0777,true);
@@ -320,7 +320,7 @@ class PromotionController extends Controller
         $cv_name  = "buffer.pug.blade.php";
         $_string = file_get_contents($pathIn.$tenchuongtrinh."/".$cv_name);
         $data = array();
-        $data['number_cate'] = $sodanhmuccha = substr_count($_string, "#KMDANHMUCSANPHAM");
+        $data['number_cate'] = $sodanhmuccha = substr_count($_string, "#KMDANHMUCCHA");
         if($request->isMethod("post"))
         {
             DTPromotion::xoaBuocHai($tenchuongtrinh);
@@ -341,6 +341,10 @@ class PromotionController extends Controller
                 for ($j=1; $j <= $sodanhmuccon; $j++) { 
                     $tendanhmuccon  = $request->input("tendanhmuccon".$i.$j);
                     $madanhmuccon   = $request->input("madanhmuccon".$i.$j);
+                    if(empty($madanhmuccon))
+                    {
+                        $madanhmuccon = 0;
+                    }
                     $codedanhmuccon = MrData::toAlias2($tendanhmuccon);
                     $templatedanhmuccon       = (!empty($request->input("templatedanhmucrieng".$i.$j)))?$request->input("templateriengdanhmuccon".$i.$j):$request->input("templatechungdanhmuccon".$i);
                     DTPromotion::themDanhMucCon($codedanhmuccon,$tenchuongtrinh,$madanhmuccon,$codedanhmuc,$tendanhmuccon,$templatedanhmuccon);
@@ -371,6 +375,7 @@ class PromotionController extends Controller
             $_products  = $request->input("id");
             $_name      = $request->input("name");
             $_discount  = $request->input("discount");
+            $_price_sale     = $request->input("price_sale");
             $_price     = $request->input("price");
             $_image     = $request->input("image");
             $_link_pro  = $request->input("link_pro");
@@ -386,11 +391,12 @@ class PromotionController extends Controller
                         $name         = $_name[$number];
                         $discount     = $_discount[$number];
                         $price        = $_price[$number];
+                        $price_sale        = $_price_sale[$number];
                         $image        = $_image[$number];
                         $link_pro     = $_link_pro[$number];
                         $phantram     = $_phantram[$number];
                         $attribute    = $_attribute[$number];
-                        DTPromotion::capNhatChiTietSanPham($tenchuongtrinh,$id,$name,$discount,$price,$image,$link_pro,$phantram,$attribute);
+                        DTPromotion::capNhatChiTietSanPham($tenchuongtrinh,$id,$name,$discount,$price,$image,$link_pro,$phantram,$attribute,$price_sale);
                         $number++;
                     }
                 }
@@ -428,18 +434,21 @@ class PromotionController extends Controller
                 $name_pro     = $product_info->name;
                 $price_pro    = $product_info->discount;
                 $price_pro    = number_format($price_pro,0,".",".")." Đ";
+                $price_sale    = $product_info->saleprice;
+                $price_sale    = number_format($price_sale,0,".",".")." Đ";
                 $img_pro      = "https://static.dienmaycholon.vn/tmp/product_".$product_info->myid."_220_220.jpg";
                 $link_pro     = "https://dienmaycholon.vn/".MrData::toAlias2($product_info->namecate).'/'.MrData::toAlias2($product_info->name);
                 $_data['id']                    = $id;
                 $_data['attribute']             = $attribute;
                 $_data['name']                  = $name_pro;
                 $_data['discount']              = $price_pro;
+                $_data['price_sale']            = $price_sale;
                 $_data['image']                 = $img_pro;
                 $_data['link_pro']              = $link_pro;
                 $_data['price']                 = $giachuongtrinh;
                 $_data['attribute']             = $_attribute;
                 $_giahientai                    = (!empty($value->price))?$value->price:$product_info->discount;
-                $_data['phantram']              = round($product_info->saleprice - $_giahientai/$product_info->saleprice*100);
+                $_data['phantram']              = round(($product_info->saleprice - $_giahientai)/$product_info->saleprice*100);
                 $data[$value->cid_catechild][]  = $_data;
             }
         }
@@ -653,7 +662,7 @@ class PromotionController extends Controller
             $number_categories      = 1;
             foreach ($list_cate as $value) {
                 $_string_cateparent .= $value->content;
-                $list_catechild     = DTPromotion::getDanhMucCon($value->code);
+                $list_catechild     = DTPromotion::getDanhMucCon($value->code,$tenchuongtrinh);
                 $string_catechild  = '';
                 foreach ($list_catechild as $_catechild) {
                     $_string_catechild = $_catechild->layout;
@@ -662,26 +671,33 @@ class PromotionController extends Controller
                     $_string1           = str_replace("#KMDMID",$_catechild->cid_child,$_string1);
                     $_menu_categories   .= $_string1 . " \n";
                     $_string_catechild = str_replace("#KMDMID",$_catechild->cid_child,$_string_catechild);
-                    $list_product     = DTPromotion::getSanPhamDanhMuc($_catechild->code);
+                    $list_product     = DTPromotion::getSanPhamDanhMuc($_catechild->code,$tenchuongtrinh);
                     $_string_product  = '';
                     foreach ($list_product as $product) {
                         $_row_product   = $product->layout;
                         $link_pro       = $product->link;
                         $name_pro       = $product->name;
                         $price_pro      = $product->discount;
+                        $price_sale     = $product->price_sale;
                         $img_pro        = $product->image;
                         $attribute      = $product->attribute;
                         $note           = $product->promo;
-                        $giachuongtrinh = $product->price;
+                        $giachuongtrinh = (!empty($product->price))?$product->price:$product->discount;
                         $phantram       = $product->phan_tram;
+                        $_phantram      = '';
+                        if(!empty($phantram))
+                        {
+                            $_phantram  = 'span.icon11 '.$phantram.'%';
+                        }
                         $_row_product   = str_replace("#KMLINKSANPHAM",$link_pro,$_row_product);
                         $_row_product   = str_replace("#KMTENSANPHAM",$name_pro,$_row_product);
                         $_row_product   = str_replace("#KMGIASANPHAM",$price_pro,$_row_product);
+                        $_row_product   = str_replace("#KMGIAHANG",$price_sale,$_row_product);
                         $_row_product   = str_replace("#KMGIAKHUYENMAI",$giachuongtrinh,$_row_product);
                         $_row_product   = str_replace("#KMHINHSANPHAM",$img_pro,$_row_product);
                         $_row_product   = str_replace("#KMTHUOCTINH",$attribute,$_row_product);
                         $_row_product   = str_replace("#KMNOTESANPHAM",$note,$_row_product);
-                        $_row_product   = str_replace("#KMPHANTRAMGIAM",$phantram,$_row_product);
+                        $_row_product   = str_replace("#KMPHANTRAMGIAM",$_phantram,$_row_product);
                         $_row_product   = str_replace("#KMDMCLGIAKHUYENMAI",$giachuongtrinh,$_row_product);
                         $_string_product .= $_row_product. " \n"; 
                     }
@@ -705,7 +721,6 @@ class PromotionController extends Controller
         $myfile = fopen($pathIn.$tenchuongtrinh."/".$file_name, "wb") or die("Unable to open file!");
         fwrite($myfile, $_string);
         fclose($myfile);
-        die();
     }
 
     // public function taoChuongTrinh($tenchuongtrinh)

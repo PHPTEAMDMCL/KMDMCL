@@ -49,6 +49,7 @@
 		      <thead>
 		        <tr>
 		          <th>Tên sản phẩm (#KMDMCLTENSANPHAM)</th>
+		          <th>Giá hãng (#KMGIAHANG)</th>
 		          <th>Giá sản phẩm (#KMDMCLGIASANPHAM)</th>
 		          <th>Giá khuyến mãi (#KMDMCLGIAKHUYENMAI)</th>
 		          <th>Hình ảnh (#KMDMCLHINHSANPHAM)</th>
@@ -66,6 +67,7 @@
 		          <input type="hidden" name="id[]" value="<?php echo $product['id'];?>" />
 		          <td><input type="" name="name[]" value="<?php echo $product['name'];?>"></td>
 		          <td><input type="" name="discount[]" value="<?php echo $product['discount'];?>"></td>
+		          <td><input type="" name="price_sale[]" value="<?php echo $product['price_sale'];?>"></td>
 		          <td><input type="" name="price[]" value="<?php echo $product['price'];?>"></td>
 		          <td><input type="" name="image[]" value="<?php echo $product['image'];?>"></td>
 		          <td><input type="" name="link_pro[]" value="<?php echo $product['link_pro'];?>"></td>

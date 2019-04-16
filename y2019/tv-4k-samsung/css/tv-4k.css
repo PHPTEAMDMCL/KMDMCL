@@ -1,0 +1,456 @@
+@font-face
+{
+  font-family: ssfour;
+  src:url('../fonts/SamsungOne-400.eot?');
+  src:url('../fonts/SamsungOne-400.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/SamsungOne-400.woff2') format('woff2'),
+      url('../fonts/SamsungOne-400.woff') format('woff'),
+      url('../fonts/SamsungOne-400.ttf') format('truetype'),
+      url('../fonts/SamsungOne-400.svg#SamsungOne-400') format('svg');
+}
+@font-face
+{
+  font-family: ssfive;
+  src:url('../fonts/SamsungOne-500.eot?');
+  src:url('../fonts/SamsungOne-500.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/SamsungOne-500.woff2') format('woff2'),
+      url('../fonts/SamsungOne-500.woff') format('woff'),
+      url('../fonts/SamsungOne-500.ttf') format('truetype'),
+      url('../fonts/SamsungOne-500.svg#SamsungOne-500') format('svg');
+}
+@font-face
+{
+  font-family: sssix;
+  src:url('../fonts/SamsungOne-600.eot?');
+  src:url('../fonts/SamsungOne-600.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/SamsungOne-600.woff2') format('woff2'),
+      url('../fonts/SamsungOne-600.woff') format('woff'),
+      url('../fonts/SamsungOne-600.ttf') format('truetype'),
+      url('../fonts/SamsungOne-600.svg#SamsungOne-600') format('svg');
+}
+@font-face
+{
+  font-family: sseight;
+  src:url('../fonts/SamsungOne-800.eot?');
+  src:url('../fonts/SamsungOne-800.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/SamsungOne-800.woff2') format('woff2'),
+      url('../fonts/SamsungOne-800.woff') format('woff'),
+      url('../fonts/SamsungOne-800.ttf') format('truetype'),
+      url('../fonts/SamsungOne-800.svg#SamsungOne-800') format('svg');
+}
+@font-face
+{
+  font-family: samsungbold;
+  src:url('../fonts/iCielSamsungSharpSans-Bold.eot?');
+  src:url('../fonts/iCielSamsungSharpSans-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/iCielSamsungSharpSans-Bold.woff2') format('woff2'),
+      url('../fonts/iCielSamsungSharpSans-Bold.woff') format('woff'),
+      url('../fonts/iCielSamsungSharpSans-Bold.ttf') format('truetype'),
+      url('../fonts/iCielSamsungSharpSans-Bold.svg#iCielSamsungSharpSans-Bold') format('svg');
+}
+@font-face
+{
+  font-family: samsungregular;
+  src:url('../fonts/iCielSamsungSharpSansRegular.eot?');
+  src:url('../fonts/iCielSamsungSharpSansRegular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/iCielSamsungSharpSansRegular.woff2') format('woff2'),
+      url('../fonts/iCielSamsungSharpSansRegular.woff') format('woff'),
+      url('../fonts/iCielSamsungSharpSansRegular.ttf') format('truetype'),
+      url('../fonts/iCielSamsungSharpSansRegular.svg#iCielSamsungSharpSansRegular') format('svg');
+}
+@font-face
+{
+  font-family: samsungmedium;
+  src:url('../fonts/SamsungSharpSans-Medium.eot?');
+  src:url('../fonts/SamsungSharpSans-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/SamsungSharpSans-Medium.woff2') format('woff2'),
+      url('../fonts/SamsungSharpSans-Medium.woff') format('woff'),
+      url('../fonts/SamsungSharpSans-Medium.ttf') format('truetype'),
+      url('../fonts/SamsungSharpSans-Medium.svg#SamsungSharpSans-Medium') format('svg');
+}
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+article, aside, figure, footer, header, nav, section, details, summary {display: block;}
+html { box-sizing: border-box;}
+*,*:before,*:after { box-sizing: inherit; }
+img, object{max-width: 100%;height: auto;}
+html {overflow-y: scroll;}
+ul, li {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {content: ''; content: none;}
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;text-decoration: none;}
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+input, select {vertical-align: middle;}
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom;}
+.ie7 input[type="checkbox"] {vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+select, input, textarea {font: 99% sans-serif;}
+table {font-size: inherit; font: 100%;}
+small {font-size: 85%;}
+strong {font-weight: bold;}
+td, td img {vertical-align: top;}
+.clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button {cursor: pointer;}
+button, input, select, textarea {margin: 0;}
+button,
+input[type=button] {width: auto; overflow: visible;}
+.ie7 img {-ms-interpolation-mode: bicubic;}
+.clearfix:after { content: " "; display: block; clear: both; }
+body
+{
+  font-family: Arial, Tahoma, sans-serif;
+  font-size: 14px;
+  color: #fff;
+}
+header {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    background: #f6f6f6 url(../img/bg-header.jpg) no-repeat scroll center top;
+    height: 700px;
+}
+.logo{
+  margin-top: 15px;
+}
+.modelsamsung a{
+  font-size: 24px;
+  font-family: samsungbold, Arial, Tahoma;
+  border-radius: 25px;
+  padding: 5px 50px 4px 50px;
+  border: 2px solid #000;
+  color: #000;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+}
+.modelsamsung a:hover{
+  background-color: #2f56ab;
+  text-decoration: none;
+  color: #fff;
+  border: 2px solid #2f56ab;
+}
+.modelsamsung{
+  margin: 2% 0 4% 0;
+  text-align: center;
+}
+.boxpro{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.boxpro_img{
+  padding: 0px;
+  text-align: right;
+}
+.boxpro_desc{
+  padding-left: 0px;
+  padding-top: 0px;
+}
+.boxpro_desc_gen{
+  background-color: #000;
+  padding: 7% 6%;
+}
+.boxpro_desc h3{
+  font-size: 16px;
+  font-family: sseight, Arial, Tahoma;
+  color: #fff;
+  font-weight: normal;
+  line-height: 25px;
+}
+.boxpro_desc p{
+  font-size: 14px;
+  font-family: ssfour, Arial, Tahoma;
+  color: #fff;
+  font-weight: normal;
+  line-height: 25px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #484747;
+}
+.boxpro_desc_item{
+  padding: 10px 0% 14px 0%;
+}
+.boxpro{
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px -3px 10px 0px #cac5c5;
+  margin-bottom: 6%;
+}
+.s_body{
+  background-color: #eeecea;
+  padding: 50px 0 50px 0;
+}
+.title_box{
+  text-align: center;
+  margin-top: -45px;
+  margin-bottom: 20px;
+  z-index: 100;
+  position: relative;
+}
+.titletv{
+  font-size: 30px;
+  font-family: samsungbold, Arial, Tahoma;
+  color: #ffec7a;
+  background-color: #000;
+  display: inline-block;
+  width: 30%;
+  margin: 0 auto;
+  padding: 10px 0 5px 0px;
+  position: relative;
+}
+.titletv:before{
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -22px;
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-right: 22px solid #000;
+  border-bottom: 24px solid transparent;
+}
+.titletv:after{
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: -22px;
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-left: 22px solid #000;
+  border-bottom: 24px solid transparent;
+}
+.team { 
+  margin-left: 1px;
+  border:1px solid #ebebeb; 
+  padding:0px;
+}
+.team:hover {border:1px solid #00d2f3;}
+.team .img-box { 
+  opacity: 1; 
+  display: block; 
+  position: relative;  
+  border:none; 
+}
+.positioninch {
+  position: relative;
+  margin:0 auto; 
+  text-align:center;
+}
+.team .positioninch a img{
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  width: 220px;
+  height: 220px;
+}
+.team .khuyenmaitv .positioninch img{
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  width: 373px;
+  height: 128px;
+}
+.pt-md {margin:0 auto;}
+.tengia {background:#f6f6f6;}
+.tensp a {
+  color:#242527;
+  display: block;
+  height: 31px;
+  overflow: hidden;}
+.tensp:hover {color:#242527;}
+.giaban {
+  font-family:samsungbold, Arial, Tahoma; 
+  font-size:30px; 
+  color:#2f56ab; 
+  padding:10px 0px; 
+}
+.gia {margin:0 auto; padding:0px;}
+.tengiatv {background:#fff;}
+.khuyenmaitv  {background:#f4f6f9; overflow:auto; margin-bottom:10px;}
+.tensptv{
+  font-family:samsungbold, Arial, Tahoma; 
+  font-size:16px; 
+  color:#0a0500; 
+  text-transform:uppercase; 
+  padding:5px 15px; 
+  margin:0 auto;
+}
+.tensptv a{
+  color:#0a0500; 
+}
+.top-lefttv { 
+  position: absolute;
+  top: 47px;
+  left: 83px; 
+  width: 45px;
+  height: 52px;
+  line-height:54px; 
+  text-align: center;
+  display: block;
+  font-family: samsungbold, Arial, Tahoma; 
+  font-size:18px; 
+  color:#fff; 
+  background: url(../img/bg-inch.png) no-repeat scroll center top;
+}
+.muangay{
+  margin-bottom: 15px;
+}
+.muangay a img{
+  max-width: 160px;
+  max-height: 40px;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+.boxpro_product{
+  margin-top: 3%;
+  position: relative;
+}
+.nextslider {
+    background: url(../img/btn-next.png) no-repeat scroll center top;
+    width: 30px;
+    height: 50px;
+    display: inline-block;
+    opacity: 0.5;
+}
+.nextslider:hover{
+  opacity: 1;
+}
+.prevslider {
+    background: url(../img/btn-prev.png) no-repeat scroll center top;
+    width: 30px;
+    height: 50px;
+    display: inline-block;
+    opacity: 0.5;
+}
+.prevslider:hover{
+  opacity: 1;
+}
+.boxpro_product .owl-prev {
+    position: absolute;
+    top: 45%;
+    left: 0%;
+    transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    background-color: #ebebeb;
+}
+.boxpro_product .owl-next {
+    position: absolute;
+    top: 45%;
+    right: 2.5%;
+    transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    background-color: #ebebeb;
+}
+.boxpro_product2{
+  max-width: 67%;
+  margin: 0 auto;
+  float: none;
+}
+.boxpro_product2 .team{
+  width: 48.5%;
+  float: left;
+}
+.boxpro_product2 .team:last-child{
+  float: right;
+  width: 48.5%;
+}
+#bttop {
+    padding: 5px;
+    position: fixed;
+    bottom: 35px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+.none {display:none;}
+.block {display:block;}
+footer {
+    clear: both;
+    background: #fff url(../img/footer_03.jpg) no-repeat center center;
+    font-family: sseight, Arial, Tahoma;
+    font-size: 14px;
+    color: #000;
+    margin: 0 auto;
+    padding: 15px 10px 0px 0px;
+    text-align: center;
+    line-height: 50px;
+}
+@media only screen and (max-width: 800px) {
+  header{
+    height: 300px;
+    background-size: contain;
+  }
+  .logo img{
+    width: 20%;
+  }
+  .boxpro_img{
+    text-align: center;
+  }
+  .boxpro_img img{
+    width: 100%;
+  }
+  .boxpro_desc{
+    padding-right: 0px;
+  }
+  .boxpro_product2{
+    max-width: 100%;
+  }
+  .top-lefttv{
+    left: 70px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  header{
+    height: 250px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  header{
+    height: 180px;
+  }
+  .modelsamsung a{
+    text-align: center;
+    padding: 0px;
+    font-size: 20px;
+  }
+  .titletv{
+    width: 70%;
+    font-size: 25px;
+  }
+  .giaban{
+    font-size: 22px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  header{
+    height: 140px;
+  }
+  .boxpro_product .owl-next{
+    right: 6%;
+  }
+  .modelsamsung a
+  {
+    width: 40%;
+    margin-bottom: 20px;
+  }
+}
