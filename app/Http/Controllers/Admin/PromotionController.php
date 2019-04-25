@@ -787,4 +787,20 @@ class PromotionController extends Controller
     //     fwrite($myfile, $_string);
     //     fclose($myfile);
     // }
+
+    public function taotrangdemtuychon(Request $request){
+        if($request->isMethod("post")){
+            $link = $request->input("link");
+            $html = file_get_contents($link);
+            $file_name   = $request->input("tenchuongtrinh").".blade.php";
+            $pathIn      = PATH_PUBLIC.'/resources/views/v2019/buffer/';
+            $myfile = fopen($pathIn.$file_name, "wb") or die("Unable to open file!");
+            fwrite($myfile, $html);
+            fclose($myfile);
+            if(file_exists($pathIn.$file_name)){
+                $request->session()->flash("success","Thêm trang đệm thành công");
+            }
+        }
+        return view("admin.promotion.taotrangdemtuychon",$this->View);  
+    }
 }

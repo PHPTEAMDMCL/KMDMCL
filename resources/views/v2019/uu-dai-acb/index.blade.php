@@ -42,7 +42,7 @@
                     <div class="box_info_left"><img class="animated fadeInRight" src="http://khuyenmai.dienmaycholon.vn/y2019/uu-dai-acb/img/noi-dung-chuong-trinh.png" alt="Hotline siêu thị điện máy Chợ Lớn"></div>
                     <div class="box_info_right">
                         <p>Khi mua <strong>trả góp 0% các sản phẩm tivi, điện thoại, tủ lạnh, máy giặt, máy lạnh</strong> (theo danh sách đính kèm) có giá thanh toán cuối cùng từ 10.000.000đ trở lên (sau khi đã trừ hết ưu đãi, quyền giảm giá khác (nếu có) <strong>sẽ được hoàn tiền 1.000.000đ</strong> sau khi kết thúc chương trình</p>
-                        <a class="logodmcl" href="https://dienmaycholon.vn/" target="_blank" title="danh sách thẻ acb áp dụng"><img src="http://khuyenmai.dienmaycholon.vn/y2019/uu-dai-acb/img/danh-sach-the-ap-dung.png" alt="danh sách thẻ acb áp dụng"></a>
+                        <a class="logodmcl listcard" href="javascript:;" title="danh sách thẻ acb áp dụng"><img src="http://khuyenmai.dienmaycholon.vn/y2019/uu-dai-acb/img/danh-sach-the-ap-dung.png" alt="danh sách thẻ acb áp dụng"></a>
                     </div>
                 </div>
             </div>
@@ -74,6 +74,7 @@
                 $number = 1;
                 foreach ($danhsachsanpham as $key=>$sanphantheodanhmuc) 
                 {
+                    $namecate = strtoupper($key);
                 ?>
                 <div class="box_content my_box_content<?php echo $number;?>">
                     <ul class="list_product">
@@ -119,7 +120,7 @@
                         }
                         ?>
                     </ul>
-                    <div class="boxseemore"><button class="btn_seemore" type="button"> <span>XEM THÊM SẢN PHẨM TIVI KHÁC</span></button></div>
+                    <div class="boxseemore"><button class="btn_seemore" type="button"> <span>XEM THÊM SẢN PHẨM <?php echo $namecate;?> KHÁC</span></button></div>
                 </div>
                 <?php
                         $number++;
@@ -130,6 +131,7 @@
         <footer>
             <p>Bản quyền © 2001 - 2019 thuộc về Công ty TNHH Cao Phong</p>
         </footer>
+        <section class="box_popup box_popupvoucher"><div class="popup_outside_stock popup_general"><div class="popup_hidden_stock"></div><div class="popup_position_stock"><div class="popup_content_stock"><div class="close_comment"><span class="text_closepopup"><i class="closepopup"></i></span></div><div class="body_popup"><p class="p_title">CÁC SẢN PHẨM THẺ ACB ÁP DỤNG TRONG CHƯƠNG TRÌNH ƯU ĐÃI</p><div class="introduce2"><img src="http://khuyenmai.dienmaycholon.vn/y2019/uu-dai-acb/img/danh-sach-the.jpg" alt="Danh sách thẻ acb áp dụng"></div></div></div></div></div></section>
         <div id="bttop"><img class="block" src="http://khuyenmai.dienmaycholon.vn/y2019/uu-dai-acb/img/uptop.png" width="50" height="51"><img class="none" src="http://khuyenmai.dienmaycholon.vn/y2019/uu-dai-acb/img/uptop-mb.png" width="30" height="31"></div>
     </body>
 </html>

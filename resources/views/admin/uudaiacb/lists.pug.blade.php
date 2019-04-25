@@ -7,7 +7,8 @@ ul.breadcrumb
     i.icon-angle-right
   li
     a(href='#') Danh sách Sản phẩm chạy
-
+a.btn.btn-primary(href='/admin/uudaiacb/lists?change_value=1&nhom=1' style='float:right;margin-bottom:5px') Update Price
+a.btn.btn-primary(href='/admin/uudaiacb/taotrangdem' style='float:right;margin-bottom:5px') Tạo trang đệm
 .row-fluid.sortable
   .box.span12
     .box-header(data-original-title='')

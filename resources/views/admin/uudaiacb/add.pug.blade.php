@@ -30,10 +30,10 @@ ul.breadcrumb
 	        fieldset
 	        	.control-group
 					label.control-lable Chọn danh mục
-	        		{!!Form::text("cid_cate",null,[])!!}
+	        		{!!Form::text("cid_cate",session('tendanhmuc'),[])!!}
 				.control-group
 	        		label.control-lable Nhập mã SAP của  sản phẩm 
-	        		{!!Form::text("cid_product",null,['autocomplete'=>'off'])!!}
+	        		{!!Form::text("cid_product",null,[])!!}
 	        	
 	        		@if($errors->has("cid_product"))     		
 	        		p(style='color:red') 

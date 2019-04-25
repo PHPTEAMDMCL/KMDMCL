@@ -17,14 +17,38 @@ Route::get('/', function () {
 	return redirect("https://dienmaycholon.vn");
     return view('welcome',['one'=>1,'two'=>'hello world']);
 });
+Route::get('/trang-khong-ton-tai', 'PromotionController@errorpage');
 Route::get('/chuongtrinh/{tenchuongtrinh}', 'PromotionController@index');
+Route::get('/chuongtrinhdacbiet/{tenchuongtrinh}', 'PromotionController@chuongtrinhdacbiet');
+Route::get('/chuongtrinhgoc/{tenchuongtrinh}', 'PromotionController@chuongtrinhgoc');
 Route::any('/sendinforcustomer/{tenchuongtrinh}', 'PromotionController@sendinforcustomer');
+Route::group(["prefix"=>"2019","namespace"=>"C2019"],function(){
+	Route::get('/dat-hang-samsung-galaxy-s10','IndexController@ordergalaxy');
+	Route::post('/post-order','IndexController@postorder');
+	// Route::get('/dat-hang-samsung-a50',function(){
+	// 	return view('v2019.m03.m50');
+	// });
+	Route::any('/dat-hang-toshiba','IndexController@toshiba');
+	Route::any('/dat-hang-samsung-a50','IndexController@ordera50');
+	Route::group(["prefix"=>"01"],function(){
+		Route::get('/mung-dai-le-30-04', "IndexController@index");
+	});
+	Route::group(["prefix"=>"01"],function(){
+		Route::get('/gio-to-hung-vuong',function(){
+			return view("v2019.buffer.gio-to-hung-vuong");
+		});
+	});
+	Route::group(["prefix"=>"03"],function(){
+		Route::get('/happy-womans-day','IndexController@womenday');
+		Route::any('/tv-4k-samsung','IndexController@tivisamsung');
+		
+	});
+
+});
 Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 	Route::group(["prefix"=>"10"],function(){
 		Route::get('/test', "ProductController@test");
 		Route::any("/posttest","ProductController@posttest");
-
-		
 	});
 	Route::group(["prefix"=>"11"],function(){
 		//landing page 11/11
@@ -66,6 +90,26 @@ Route::group(['namespace'=>"Auth"],function(){
 			});
 });
 Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],function(){
+			Route::group(["prefix"=>"chuongtrinhkhuyenmai"],function(){
+				Route::any("themmoi","ChuongtrinhkhuyenmaiController@themmoi");
+				Route::any("danhsach","ChuongtrinhkhuyenmaiController@danhsach");
+				Route::any("chinhsua/{id}","ChuongtrinhkhuyenmaiController@chinhsua");
+				Route::any("xoa/{id}","ChuongtrinhkhuyenmaiController@xoa");
+			});
+			Route::group(["prefix"=>"samsungfour"],function(){
+				Route::any("add","SamsungfourController@add");
+				Route::any("lists","SamsungfourController@lists");
+				Route::any("edit/{id}","SamsungfourController@edit");
+				Route::any("removed/{id}","SamsungfourController@removed");
+			});
+			Route::group(["prefix"=>"uudaiacb"],function(){
+				Route::any("add","UudaiacbController@add");
+				Route::any("lists","UudaiacbController@lists");
+				Route::any("edit/{id}","UudaiacbController@edit");
+				Route::any("removed/{id}","UudaiacbController@removed");
+				Route::any("taotrangdem","UudaiacbController@taotrangdem");
+				Route::any("thaychuongtrinh","UudaiacbController@thaychuongtrinh");
+			});
 			Route::group(["prefix"=>"redday"],function(){
 				Route::any("add","ReddayController@add");
 				Route::any("lists","ReddayController@lists");
@@ -109,6 +153,7 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("removed/{id}","PromotionController@removed");
 				Route::any("index","PromotionController@index");
 				Route::any("stepone","PromotionController@stepone");
+				Route::any("taotrangdemtuychon","PromotionController@taotrangdemtuychon");
 				Route::any("steptwo/{namelandingpage}","PromotionController@steptwo");
 				Route::any("stepthree/{namelandingpage}","PromotionController@stepthree");
 				Route::any("stepfinish/{namelandingpage}","PromotionController@stepfinish");

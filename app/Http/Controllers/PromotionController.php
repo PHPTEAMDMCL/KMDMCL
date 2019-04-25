@@ -30,16 +30,30 @@ class PromotionController extends Controller
         }
         else
         {
-            return view("v2019.chuongtrinhketthuc",$this->View);
+            return view("v2019.trangkhongtontai",$this->View);
         }
     }
 
     public function chuongtrinhdacbiet($tenchuongtrinh)
     {
         $this->View["tenchuongtrinh"] = $tenchuongtrinh;
+        $file_name   = "buffer.blade.php";
+        $pathIn      = PATH_PUBLIC.'/resources/views/v2019/';
+        if(is_file($pathIn.$tenchuongtrinh.'/'.$file_name))
+        {
+            return view("v2019.".$tenchuongtrinh.".buffer",$this->View);
+        }
         $this->View["danhsachsanpham"] = DTPromotion::getSanphamChuongTrinhDacBietNew($tenchuongtrinh);
         return view("v2019.".$tenchuongtrinh.".index",$this->View);
     }
+
+    public function chuongtrinhgoc($tenchuongtrinh)
+    {
+        $this->View["tenchuongtrinh"] = $tenchuongtrinh;
+        $this->View["danhsachsanpham"] = DTPromotion::getSanphamChuongTrinhDacBietNew($tenchuongtrinh);
+        return view("v2019.".$tenchuongtrinh.".index",$this->View);
+    }
+        
 
     public function sendinforcustomer(Request $request,$tenchuongtrinh)
     {
@@ -58,5 +72,10 @@ class PromotionController extends Controller
             $data['success']    = $resutl;
             echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
         }
+    }
+
+    public function errorpage(Request $request)
+    {
+        return view("v2019.trangkhongtontai");
     }
 }
