@@ -31,6 +31,28 @@ Route::group(["prefix"=>"2018","namespace"=>"C2018"],function(){
 		Route::get('/tivi-load','TiviController@loadapi');
 	});
 });
+Route::group(["prefix"=>"2019","namespace"=>"C2019"],function(){
+	Route::group(["prefix"=>"01"],function(){
+		Route::get('/loadindex',"IndexController@loadindex");
+		
+	});
+	Route::group(["prefix"=>"03"],function(){
+		Route::get('/load-womens',"IndexController@loadwomens");
+		
+	});
+	
+});
+
+
+Route::group(['prefix'=>'default','namespace'=>'Api'],function(){
+	Route::group(['prefix'=>'webservice'],function(){
+		Route::get('getdatasapcode','ServiceController@getdatasapcode');
+		Route::get('getsapmobi','ServiceController@getsapmobi');
+		Route::get('getsapnorm','ServiceController@getsapnorm');
+		Route::post('updatestock','ServiceController@updatestock');
+		
+	});
+});
 
 
 //restful-api

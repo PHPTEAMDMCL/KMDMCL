@@ -34,7 +34,7 @@ a.btn.btn-primary(href='/admin/uudaiacb/taotrangdem' style='float:right;margin-b
           tr
             td.center {{$ln['id']}}
             td.center {{$ln['cid_cate']}}
-           	td.center  {{$ln->Product()['name']}}
+           	td.center {{$ln->Product()['name']}}
             td.center {{$ln['price']}}  
             td.center {{$ln['percent']}}  
             td.center 

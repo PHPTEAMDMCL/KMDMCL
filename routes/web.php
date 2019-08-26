@@ -10,13 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::get('/testcapcha', 'PromotionController@testcapcha');
+Route::any('/admin/danhsachkhachhang/{tenchuongtrinh}', 'PromotionController@danhsachkhachhang');
+Route::any('/admin/xuatdanhsachkhachhang/{tenchuongtrinh}', 'PromotionController@xuatdanhsachkhachhang');
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return redirect("http://khuyenmai.dienmaycholon.vn/chuongtrinhdacbiet/sale-hang-hieu-50");
+});
 Route::get('/', function () {
 	return "Điện máy chợ lớn ";
 	return redirect("https://dienmaycholon.vn");
     return view('welcome',['one'=>1,'two'=>'hello world']);
 });
+Route::get('/testapi', 'PromotionController@testapi');
 Route::get('/trang-khong-ton-tai', 'PromotionController@errorpage');
 Route::get('/chuongtrinh/{tenchuongtrinh}', 'PromotionController@index');
 Route::get('/chuongtrinhdacbiet/{tenchuongtrinh}', 'PromotionController@chuongtrinhdacbiet');
@@ -109,6 +115,7 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("removed/{id}","UudaiacbController@removed");
 				Route::any("taotrangdem","UudaiacbController@taotrangdem");
 				Route::any("thaychuongtrinh","UudaiacbController@thaychuongtrinh");
+				Route::any("changeoder","UudaiacbController@changeoder");
 			});
 			Route::group(["prefix"=>"redday"],function(){
 				Route::any("add","ReddayController@add");
@@ -158,6 +165,7 @@ Route::group(["prefix"=>"admin","namespace"=>"Admin","middleware"=>'auth'],funct
 				Route::any("stepthree/{namelandingpage}","PromotionController@stepthree");
 				Route::any("stepfinish/{namelandingpage}","PromotionController@stepfinish");
 				Route::any("updateaction","PromotionController@updateaction");
+				Route::any("updatedanhsachkhachhang","PromotionController@updatedanhsachkhachhang");
 				Route::any("updatefile/{namelandingpage}","PromotionController@updatefile");
 				Route::any("updateproduct/{namelandingpage}","PromotionController@updateproduct");
 				Route::any("updatepromotion","PromotionController@updatepromotion");

@@ -37,8 +37,20 @@ textarea
 					<label class="control-label" for="selectError">Chương trình</label>
 					<div class="controls">
 					  <select name="tenchuongtrinh" id="selectError" data-rel="chosen">
+					  	<option value="giai-phong-hang-ton-giam-gia-lon">
+					  		giải phóng hàng tồn giảm giá lớn
+					  	</option>
+					  	<option value="galaxy-gia-soc-mung-vu-lan">Galaxy giá sốc mừng vu lan</option>
+					  	<option value="dac-quyen-samsung-qled-8k">Đặc quyền samsung qled 8k</option>
+					  	<option value="uu-dai-samsung-mung-ky-niem-50-nam">Mừng kỷ niệm 50 năm samsung ưu đãi khủng</option>
+					  	<option value="lg-chao-mung-luot-khach-55tr">LG chào mừng lượt khách 55 triệu</option>
+					  	<option value="giai-phong-hang-ton-lg">Giải phóng hàng tồn LG</option>
+					  	<option value="tat-ca-deu-re">Tất cả đều rẻ</option>
+					  	<option value="sale-hang-hieu-50">sale hàng hiệu 50 %</option>
+					  	<option value="sinh-nhat-20-nam">Sinh Nhật Vàng 20 năm</option>
 						<option value="uu-dai-acb">Ưu đãi acb</option>
 						<option value="thang-samsung-2019">Tháng samsung 2019</option>
+						<option value="qua-tang-samsung">Quà tặng samsung</option>
 					  </select>
 					</div>
 				</div>

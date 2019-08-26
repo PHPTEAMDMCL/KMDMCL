@@ -20,7 +20,7 @@ class Promotionproduct extends Model
     	return $this->belongsTo( \App\Model\Read\Product::class,"cid_product")->getResults();
     }
     protected static function getDanhDach($tenchuongtrinh){
-       $_sql_promo = "SELECT * FROM promotion_product WHERE name_promotion like '".$tenchuongtrinh."' ORDER BY id DESC";
+       $_sql_promo = "SELECT * FROM promotion_product WHERE name_promotion like '".$tenchuongtrinh."' ORDER BY oder ASC";
         $result = DB::connection("mysql")->select($_sql_promo);
         return $result;
     }

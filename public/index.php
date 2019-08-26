@@ -24,9 +24,8 @@ define('WEB_URL', BASE_URL."public/");
 | loading any of our classes later on. It feels great to relax.
 |
 */
-
 require __DIR__.'/../vendor/autoload.php';
-
+require __DIR__.'/recaptchalib.php';
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights

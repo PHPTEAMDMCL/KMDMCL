@@ -45,7 +45,30 @@ ul.breadcrumb
 	        		{!!Form::text("price",$data['price'],[])!!}
 	        	.control-group
 	        		label.control-lable Phần trăm giảm 
-	        		{!!Form::text("percent",$data['percent'],[])!!}	        
+	        		{!!Form::text("percent",$data['percent'],[])!!}	 
+	        	.control-group
+	        		label.control-lable Ghi chú
+	        		{!!Form::textarea("note",$data['note'],[])!!}    
+	        	.control-group
+	        		label.control-lable Thứ tự
+	        		{!!Form::text("oder",$data['oder'],[])!!}   
+	        	.control-group
+	        		label.control-lable icon online
+		        		@if($data['is_red_day']==1)
+	        			label.radio
+	                        input#optionsRadios1(type='radio', name='is_red_day', value='1' checked)
+	                        | Không kích hoạt
+	                    label.radio
+	                      	input#optionsRadios2(type='radio', name='is_red_day', value='4')
+	                      	| Kích hoạt
+	                    @else
+	                	label.radio
+	                        input#optionsRadios1(type='radio', name='is_red_day', value='1')
+	                        | Không kích hoạt
+	                    label.radio
+	                      	input#optionsRadios2(type='radio', name='is_red_day', value='4' checked)
+	                      	| Kích hoạt
+	                    @endif
 	        	.control-group
 	        		img(src='https://dienmaycholon.vn/public/picture/tmp/product_'.$data->Product()['id'].'_220_220.jpg')
 	        		p {{$data->Product()['name']}}

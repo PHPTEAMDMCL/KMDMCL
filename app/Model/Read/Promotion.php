@@ -31,6 +31,12 @@ class Promotion extends Model
         return $data;
     }
 
+    protected static function updateKhachHangDaXem($id = 0 )
+    {
+        $_update = "UPDATE y2019_order SET status = 1 WHERE id like '".$id."'";
+        $result = DB::connection("mysql")->update($_update);
+    }
+
     protected static function getDanhMucChuongTrinh($tenchuongtrinh)
     {
         $_sql_promo = "SELECT * FROM categories WHERE name_promotion like '".$tenchuongtrinh."' ORDER BY id ASC";
@@ -137,6 +143,13 @@ class Promotion extends Model
         return 1;
     }
 
+    protected static function getDanhDachKhachHangDatMua($title)
+    {
+        $_sql_promo = "SELECT * FROM y2019_order WHERE title like '".$title."' ORDER BY id DESC";
+        $result = DB::connection("mysql")->select($_sql_promo);
+        return $result;
+    }
+
     protected static function getDanhSachChuongTrinh()
     {
         $_sql_promo = "SELECT * FROM promotion ORDER BY id DESC";
@@ -191,7 +204,7 @@ class Promotion extends Model
     }
     protected static function getSanphamChuongTrinhDacBietNew($name_promotion)
     {
-        $_sql_promo = "SELECT * FROM promotion_product WHERE name_promotion like '".$name_promotion."' ORDER BY id ASC";
+        $_sql_promo = "SELECT * FROM promotion_product WHERE name_promotion like '".$name_promotion."' ORDER BY oder ASC , id ASC";
         $data = DB::connection("mysql")->select($_sql_promo);
         $result = array();
         foreach ($data as $element) {
@@ -201,7 +214,29 @@ class Promotion extends Model
     }
     protected static function getChiTietSanpham($cid_product)
     {
-        $_sql_promo = "SELECT * FROM pro_product WHERE id like '".$cid_product."'";
+        $_sql_promo ="SELECT 
+                            a.id AS myid,a.name,a.cid_series,a.isprice,a.is_icon,a.is_icon_acs,a.is_icon_homec,a.is_model,a.is_price,a.is_flash_sale,a.is_sale,a.new_description,a.cid_cate,a.rate,a.note_em,a.of_type,a.status,a.price_online,
+                                a.is_red_day,a.is_double_price,a.alias,a.is_million,
+                                b.stock_num,b.stock_num_main,a.is_shopping,a.is_sample,a.note_price,
+                                a.code,a.sap_code,a.is_vat,a.canonical,a.article,a.index_page,a.slideshow,
+                                    check_coupon(a.id,a.cid_cate,2) AS coupons,
+                                    check_coupon(a.id,a.cid_cate,1) AS discountcoupons,
+                                    b.discount AS real_discount,
+                                    IF(b.is_sock='2', b.price_sock,get_price(b.id,b.discount) ) AS discount,
+                                    get_sale_price(b.id,b.saleprice) AS saleprice,
+                                    b.id as cid_res,b.is_pre_order,b.pre_order,b.noteunderprice,
+                                    b.is_promotion
+                                    ,b.cid_supplier,b.tag_title,b.tag_keyword,b.tag_description,b.content,
+                                    b.is_tranc,b.is_old,b.is_change,b.description,
+                                    b.is_sock,b.is_company,b.is_price_special,
+                                    c.name AS namecate,a.video
+                                FROM (  pro_product AS a INNER JOIN pro_supplier_product AS b ON a.id = b.cid_product 
+                                                        INNER JOIN pro_categories AS c ON c.id= a.cid_cate  
+                                     )               
+                                WHERE   
+                                            a.id LIKE '".$cid_product."'
+                               LIMIT 1
+                               ";
         $result = DB::connection("mysql2")->select($_sql_promo);
         return $result[0];
     }
@@ -211,4 +246,5 @@ class Promotion extends Model
         $result = DB::connection("mysql2")->select($_sql_promo);
         return $result[0];
     }
+    
 }

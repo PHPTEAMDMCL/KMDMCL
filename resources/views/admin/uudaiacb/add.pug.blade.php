@@ -1,3 +1,4 @@
+
 @extends('admin.layout.masterAdmin')
 @section('content')
 ul.breadcrumb
@@ -46,6 +47,20 @@ ul.breadcrumb
 	        	.control-group
 	        		label.control-lable Phần trăm giảm 
 	        		{!!Form::text("percent",null,[])!!}
+	        	.control-group
+	        		label.control-lable Ghi chú
+	        		{!!Form::textarea("note",null,[])!!}
+	        	.control-group
+	        		label.control-lable Thứ tự
+	        		{!!Form::text("oder",null,[])!!}
+	        	.control-group
+	        		label.control-lable icon online
+		        		label.radio
+	                        input#optionsRadios1(type='radio', name='is_red_day', value='1')
+	                        | Không kích hoạt
+                        label.radio
+                          	input#optionsRadios2(type='radio', name='is_red_day', value='4' checked)
+                          	| Kích hoạt
 				.form-actions
 					button.btn.btn-primary(type='submit') Save changes
 @endsection

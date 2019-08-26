@@ -48,6 +48,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) 
+        {
+            if ($exception->getStatusCode() == 404) 
+            {
+                return redirect("http://khuyenmai.dienmaycholon.vn/trang-khong-ton-tai");
+            }
+        }
         return $this->filterErrorResponse($exception, $request, parent::render($request, $exception));
         return parent::render($request, $exception);
     }

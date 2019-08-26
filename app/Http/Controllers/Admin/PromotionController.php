@@ -20,72 +20,79 @@ class PromotionController extends Controller
 {
     //
     protected $View=[];
+    public function updatedanhsachkhachhang(Request $request)
+    {
+        if($request->isMethod("post"))
+        {
+            $id = $request->input("id");
+            DTPromotion::updateKhachHangDaXem($id);
+            echo '';
+            die();
+        }
+    }
     public function add(Request $request){
-            if($request->isMethod("post")){
-                $validater=Validator::make($request->all(),[
-                    "name"=>"required",
-                    
-                   
-                ],[
-                    'name.required'=>"Vui lòng nhập tên khuyến mãi ",
+        if($request->isMethod("post")){
+            $validater=Validator::make($request->all(),[
+                "name"=>"required",
                 
-                ]);
-                if($validater->fails()){
-                    return redirect()->back()->withErrors($validater)->withInput();
-                }else{
-                   
-                    
-                    $TNews= new Promotion;
-                    $TNews->name= $request->input("name");
-                     
-                    //upload image
-                    $picture = $request->file('picture');
-                    $name_picture="image-".time().".".$picture->getClientOriginalExtension();
-                    Image::make($picture)->resize(275,95)->save(public_path("/upload/promotion/".$name_picture));
+               
+            ],[
+                'name.required'=>"Vui lòng nhập tên khuyến mãi ",
+            
+            ]);
+            if($validater->fails()){
+                return redirect()->back()->withErrors($validater)->withInput();
+            }else{
+               
+                
+                $TNews= new Promotion;
+                $TNews->name= $request->input("name");
+                 
+                //upload image
+                $picture = $request->file('picture');
+                $name_picture="image-".time().".".$picture->getClientOriginalExtension();
+                Image::make($picture)->resize(275,95)->save(public_path("/upload/promotion/".$name_picture));
 
-                    $TNews->image= $name_picture;
-                    $TNews->save();
-                    $request->session()->flash("success","Thêm thành công khuyến mãi");
-                    return redirect()->back();
-                }
-
+                $TNews->image= $name_picture;
+                $TNews->save();
+                $request->session()->flash("success","Thêm thành công khuyến mãi");
+                return redirect()->back();
             }
-            
-            
-            return view("admin.promotion.add",$this->View); 
+        }
+        return view("admin.promotion.add",$this->View); 
     }
     public function edit($id,Request $request){
-            if($request->isMethod("post")){
-                $validater=Validator::make($request->all(),[
-                    "name"=>"required",
-                ],[
-                    'name.required'=>"Vui lòng nhập khuyến mãi",
-                
-                ]);
-                if($validater->fails()){
-                    return redirect()->back()->withErrors($validater)->withInput();
-                }else{
-                    $picture = $request->file('picture');
-                    $TUpdate = Promotion::find($id);
-                    $TUpdate->name= $request->input("name");
-                       if($picture){
-                            $name_picture="image-".time().".".$picture->getClientOriginalExtension();
-                            Image::make($picture)->resize(275,95)->save(public_path("/upload/promotion/".$name_picture));
-
-                            $TUpdate->image= $name_picture;
-                        }
-
-                    $TUpdate->save();
-                    $request->session()->flash("success","Chỉnh khuyến mãi thành công");
-                    return redirect()->back();
-                }
-
-            }
-        
-
-            $this->View['data']= Promotion::find($id);
+        if($request->isMethod("post")){
+            $validater=Validator::make($request->all(),[
+                "name"=>"required",
+            ],[
+                'name.required'=>"Vui lòng nhập khuyến mãi",
             
-            return view("admin.promotion.edit",$this->View);
+            ]);
+            if($validater->fails()){
+                return redirect()->back()->withErrors($validater)->withInput();
+            }else{
+                $picture = $request->file('picture');
+                $TUpdate = Promotion::find($id);
+                $TUpdate->name= $request->input("name");
+                   if($picture){
+                        $name_picture="image-".time().".".$picture->getClientOriginalExtension();
+                        Image::make($picture)->resize(275,95)->save(public_path("/upload/promotion/".$name_picture));
+
+                        $TUpdate->image= $name_picture;
+                    }
+
+                $TUpdate->save();
+                $request->session()->flash("success","Chỉnh khuyến mãi thành công");
+                return redirect()->back();
+            }
+
+        }
+    
+
+        $this->View['data']= Promotion::find($id);
+        
+        return view("admin.promotion.edit",$this->View);
     }
     public function lists(Request $request){
         
@@ -215,11 +222,6 @@ class PromotionController extends Controller
                 print_r('stop');
                 die();
             }
-            header('Content-Type: text/html; charset=UTF-8');
-            echo '<pre style="color: #FF5722;font-weight: bold;font-size: 18px;font-style: italic;">';
-            print_r('stop');
-            echo '</pre>';
-            die();
         }
         return view("admin.promotion.index",$this->View);  
     }

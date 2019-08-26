@@ -73,21 +73,19 @@
         </nav>
         <section>
             <div class="container_screen">
-                <div class="bannertop">
-                    <a href="https://dienmaycholon.vn/tivi-led?g=model-2019" target="_blank" title="Tivi led 2019">
-                        <img class="animated fadeInUp" src="http://khuyenmai.dienmaycholon.vn/y2019/thang-samsung-2019/img/banner-top.jpg" alt="Tivi led 2019">
-                    </a>
-                </div>
-            </div>
-            <div class="container_screen">
                 <?php
                 $number = 1;
-                foreach ($danhsachsanpham as $key=>$sanphantheodanhmuc) 
+                foreach ($danhsachsanpham as $keyparent=>$sanphantheodanhmuc) 
                 {
-                    $namecate = strtoupper($key);
+                    $namecate = strtoupper($keyparent);
                 ?>
-                <div class="box_content my_box_content1">
-                    <h2 class="bg_cate">TIVI</h2>
+                <div class="box_content my_box_content<?php echo $number;?>">
+                    <div class="bannertop">
+                        <a href="https://dienmaycholon.vn/<?php echo App\MrData::toAlias($keyparent);?>?g=model-2019" target="_blank" title="<?php echo $namecate;?> 2019">
+                            <img class="animated fadeInUp" src="http://khuyenmai.dienmaycholon.vn/y2019/thang-samsung-2019/img/<?php echo App\MrData::toAlias($keyparent);?>-banner-top.jpg" alt="<?php echo $namecate;?> 2019">
+                        </a>
+                    </div>
+                    <h2 class="bg_cate"><?php echo $namecate;?></h2>
                     <ul class="list_product">
                         <?php
                         foreach ($sanphantheodanhmuc as $key=>$product_info) 
@@ -114,6 +112,10 @@
                             $img_pro      = "https://static.dienmaycholon.vn/tmp/product_".$product_info->cid_product."_220_220.jpg";
                             $link_pro     = "https://dienmaycholon.vn/".$pro_real->namecate.'/'.$pro_real->alias;
                             $tensanpham   = $pro_real->name;
+                            if(!$pro_real->is_company)
+                            {
+                                $phantramgiam = 0;
+                            }
                         ?>
                         <li>
                             <a class="img_pro" href="<?php echo $link_pro;?>" title="<?php echo $tensanpham;?>" target="_blank"><img src="<?php echo $img_pro;?>" alt="<?php echo $tensanpham;?>"></a>
